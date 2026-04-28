@@ -736,7 +736,7 @@
       .insight-card.earn-card {
         grid-area: earn;
         --card-bg: #111f1d;
-        --card-border: rgba(248, 199, 123, 0.38);
+        --card-border: rgba(152, 209, 200, 0.28);
       }
 
       .insight-card.insights-card {
@@ -878,6 +878,7 @@
         left: 0;
         top: 0;
         height: 100%;
+        display: block;
         width: var(--progress, 0%);
         border-radius: inherit;
         background: var(--bar-color, #98d1c8);
@@ -915,6 +916,16 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
+      }
+
+      .earn-progress .progress-track {
+        width: 100%;
+        align-self: stretch;
+      }
+
+      .earn-progress .progress-fill {
+        background: linear-gradient(90deg, #98d1c8, #b4eee4);
+        box-shadow: 0 0 16px rgba(152, 209, 200, 0.6);
       }
 
       .earn-progress-header {
@@ -972,6 +983,7 @@
         align-items: baseline;
         justify-content: space-between;
         gap: 12px;
+        flex-wrap: wrap;
         font-size: 12px;
         color: var(--on-surface-variant);
       }
@@ -981,13 +993,36 @@
         font-weight: 600;
       }
 
+      .chart-legend {
+        font-size: 11px;
+        color: var(--on-surface-variant);
+      }
+
       .focus-chart {
         position: relative;
         display: grid;
-        grid-template-rows: 1fr auto;
+        grid-template-columns: auto 1fr;
         gap: 12px;
-        height: 190px;
-        padding: 8px 6px 0;
+        height: 200px;
+        padding: 8px 0 0;
+      }
+
+      .chart-y-axis {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        font-size: 10px;
+        color: var(--on-surface-variant);
+        padding-bottom: 22px;
+        min-width: 34px;
+        text-align: left;
+      }
+
+      .chart-plot {
+        position: relative;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        gap: 10px;
       }
 
       .line-chart {
@@ -996,10 +1031,17 @@
         overflow: visible;
       }
 
+      .chart-gridline {
+        stroke: rgba(58, 80, 75, 0.45);
+        stroke-width: 0.6;
+      }
+
       .line-path {
         fill: none;
         stroke: var(--line-color, #98d1c8);
         stroke-width: 2.6;
+        stroke-linecap: round;
+        stroke-linejoin: round;
       }
 
       .line-path.line-compare {
@@ -1047,6 +1089,7 @@
         transform: translate(-50%, -120%);
         transition: opacity 0.2s ease;
         white-space: nowrap;
+        z-index: 2;
       }
 
       .chart-tooltip.is-visible {
@@ -1600,15 +1643,13 @@
             <div class="earn-progress">
               <div class="earn-progress-header">
                 <span>Next Milestone</span>
-                <strong>1200 / 1500 XP</strong>
+                <strong>1425 / 1500 XP</strong>
               </div>
               <div class="progress-track small">
                 <span
                   class="progress-fill"
                   style="
-                    --progress: 80%;
-                    --bar-color: #f8c77b;
-                    --bar-glow: rgba(248, 199, 123, 0.4);
+                    width: 95%;
                   "
                 ></span>
               </div>
@@ -1669,6 +1710,7 @@
                 <span class="chart-total" id="activity-range-total">
                   16.4 hrs focused
                 </span>
+                <span class="chart-legend" id="activity-legend"></span>
               </div>
               <div class="chart-tooltip" id="activity-tooltip" aria-hidden="true"></div>
               <div
@@ -1849,22 +1891,19 @@
         });
       });
 
-      // Activity insights histogram
+      // Activity insights line chart
       const activityRanges = {
         today: {
           label: "Today",
           total: "1.8 hrs focused",
           focus: "72%",
           time: "1.8h",
-          color: "#f8c77b",
-          bars: [
-            { label: "8a", value: 18 },
-            { label: "10a", value: 28 },
-            { label: "12p", value: 40 },
-            { label: "2p", value: 30 },
-            { label: "4p", value: 22 },
-            { label: "6p", value: 12 },
-          ],
+          color: "#98d1c8",
+          unit: "min",
+          compareLabel: "Yesterday",
+          labels: ["8 AM", "10 AM", "12 PM", "2 PM", "4 PM", "6 PM"],
+          series: [10, 18, 26, 20, 18, 16],
+          compare: [8, 16, 22, 18, 14, 12],
         },
         week: {
           label: "This Week",
@@ -1872,29 +1911,23 @@
           focus: "82%",
           time: "6.2h",
           color: "#98d1c8",
-          bars: [
-            { label: "Mon", value: 32 },
-            { label: "Tue", value: 44 },
-            { label: "Wed", value: 52 },
-            { label: "Thu", value: 60 },
-            { label: "Fri", value: 68 },
-            { label: "Sat", value: 54 },
-            { label: "Sun", value: 40 },
-          ],
+          unit: "h",
+          compareLabel: "Last Week",
+          labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+          series: [2.1, 2.4, 2.8, 2.5, 2.9, 2.2, 1.5],
+          compare: [1.8, 2.0, 2.4, 2.1, 2.6, 2.0, 1.2],
         },
         month: {
           label: "This Month",
           total: "64.8 hrs focused",
           focus: "89%",
           time: "28.6h",
-          color: "#b4eee4",
-          bars: [
-            { label: "W1", value: 48 },
-            { label: "W2", value: 62 },
-            { label: "W3", value: 70 },
-            { label: "W4", value: 56 },
-            { label: "W5", value: 78 },
-          ],
+          color: "#98d1c8",
+          unit: "h",
+          compareLabel: "Last Month",
+          labels: ["W1", "W2", "W3", "W4", "W5"],
+          series: [12.4, 13.8, 14.6, 11.9, 12.1],
+          compare: [10.8, 12.4, 13.1, 10.7, 11.5],
         },
       };
 
@@ -1902,30 +1935,174 @@
       const activityChart = document.getElementById("activity-chart");
       const activityRangeLabel = document.getElementById("activity-range-label");
       const activityRangeTotal = document.getElementById("activity-range-total");
+      const activityLegend = document.getElementById("activity-legend");
       const insightFocus = document.getElementById("insight-focus");
       const insightTime = document.getElementById("insight-time");
+      const insightsChart = document.querySelector(".insights-chart");
+      const activityTooltip = document.getElementById("activity-tooltip");
+
+      function formatActivityValue(value, unit) {
+        if (unit === "h") {
+          return `${value.toFixed(1)} hrs`;
+        }
+        return `${Math.round(value)} min`;
+      }
+
+      function formatTickValue(value, unit) {
+        if (unit === "h") {
+          return `${value.toFixed(1)}h`;
+        }
+        return `${Math.round(value)}m`;
+      }
+
+      function buildLinePoints(values, maxValue) {
+        const paddingX = 6;
+        const paddingY = 10;
+        const width = 100 - paddingX * 2;
+        const height = 100 - paddingY * 2;
+        const count = values.length;
+        return values.map((value, index) => {
+          const x =
+            count === 1 ? 50 : paddingX + (width * index) / (count - 1);
+          const y =
+            100 - paddingY - (value / maxValue) * height;
+          return {
+            x: Number(x.toFixed(2)),
+            y: Number(y.toFixed(2)),
+            value,
+          };
+        });
+      }
+
+      function buildGridLines(maxValue) {
+        const paddingY = 10;
+        const height = 100 - paddingY * 2;
+        const tickCount = 4;
+        const ticks = Array.from({ length: tickCount + 1 }, (_, i) => {
+          const ratio = (tickCount - i) / tickCount;
+          return Number((maxValue * ratio).toFixed(1));
+        });
+        const lines = ticks.map((value) => {
+          const y = 100 - paddingY - (value / maxValue) * height;
+          return {
+            y: Number(y.toFixed(2)),
+            value,
+          };
+        });
+        return { ticks, lines };
+      }
+
+      function showActivityTooltip(event) {
+        if (!activityTooltip || !insightsChart) return;
+        const target = event.currentTarget;
+        const label = target.dataset.label;
+        const value = parseFloat(target.dataset.value);
+        const unit = target.dataset.unit;
+        activityTooltip.textContent = `${label} · ${formatActivityValue(
+          value,
+          unit,
+        )}`;
+        activityTooltip.classList.add("is-visible");
+        activityTooltip.setAttribute("aria-hidden", "false");
+
+        const containerRect = insightsChart.getBoundingClientRect();
+        const tooltipRect = activityTooltip.getBoundingClientRect();
+        let x = event.clientX - containerRect.left;
+        let y = event.clientY - containerRect.top;
+        x = Math.min(
+          Math.max(x, tooltipRect.width / 2 + 8),
+          containerRect.width - tooltipRect.width / 2 - 8,
+        );
+        y = Math.max(tooltipRect.height + 16, y);
+        activityTooltip.style.left = `${x}px`;
+        activityTooltip.style.top = `${y}px`;
+      }
+
+      function hideActivityTooltip() {
+        if (!activityTooltip) return;
+        activityTooltip.classList.remove("is-visible");
+        activityTooltip.setAttribute("aria-hidden", "true");
+      }
 
       function renderActivityRange(rangeKey) {
         const range = activityRanges[rangeKey];
         if (!range || !activityChart) return;
         const maxValue = Math.max(
-          ...range.bars.map((bar) => bar.value),
+          ...range.series,
+          ...range.compare,
           1,
         );
-        activityChart.innerHTML = range.bars
-          .map((bar) => {
-            const height = Math.max((bar.value / maxValue) * 100, 8);
-            const color = bar.color || range.color || "#98d1c8";
-            return `
-              <div class="chart-bar" title="${bar.label}: ${bar.value} min focused">
-                <div class="chart-fill" style="--height: ${height}%; --bar-color: ${color}"></div>
-                <span>${bar.label}</span>
-              </div>
-            `;
-          })
-          .join("");
+        const seriesPoints = buildLinePoints(range.series, maxValue);
+        const comparePoints = buildLinePoints(range.compare, maxValue);
+        const { ticks, lines } = buildGridLines(maxValue);
+        const seriesLine = seriesPoints
+          .map((point) => `${point.x},${point.y}`)
+          .join(" ");
+        const compareLine = comparePoints
+          .map((point) => `${point.x},${point.y}`)
+          .join(" ");
+
+        activityChart.innerHTML = `
+          <div class="chart-y-axis">
+            ${ticks
+              .map((tick) => `<span>${formatTickValue(tick, range.unit)}</span>`)
+              .join("")}
+          </div>
+          <div class="chart-plot">
+            <svg
+              class="line-chart"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              role="img"
+              aria-label="${range.label} focus trend"
+            >
+              ${lines
+                .map(
+                  (line) =>
+                    `<line class="chart-gridline" x1="0" x2="100" y1="${line.y}" y2="${line.y}"></line>`,
+                )
+                .join("")}
+              <polyline
+                class="line-path line-compare"
+                style="--line-color: ${range.color}"
+                points="${compareLine}"
+              ></polyline>
+              <polyline
+                class="line-path"
+                style="--line-color: ${range.color}"
+                points="${seriesLine}"
+              ></polyline>
+              ${seriesPoints
+                .map((point, index) => {
+                  const label = range.labels[index];
+                  const value = range.series[index];
+                  return `
+                    <circle
+                      class="line-point"
+                      cx="${point.x}"
+                      cy="${point.y}"
+                      r="3.6"
+                      style="--line-color: ${range.color}"
+                      data-label="${label}"
+                      data-value="${value}"
+                      data-unit="${range.unit}"
+                    ></circle>
+                  `;
+                })
+                .join("")}
+            </svg>
+            <div
+              class="chart-axis"
+              style="grid-template-columns: repeat(${range.labels.length}, minmax(0, 1fr));"
+            >
+              ${range.labels.map((label) => `<span>${label}</span>`).join("")}
+            </div>
+          </div>
+        `;
+
         if (activityRangeLabel) activityRangeLabel.textContent = range.label;
         if (activityRangeTotal) activityRangeTotal.textContent = range.total;
+        if (activityLegend) activityLegend.textContent = `vs ${range.compareLabel}`;
         if (insightFocus) insightFocus.textContent = range.focus;
         if (insightTime) insightTime.textContent = range.time;
         activityButtons.forEach((btn) => {
@@ -1933,8 +2110,15 @@
         });
         activityChart.setAttribute(
           "aria-label",
-          `${range.label} activity histogram`,
+          `${range.label} focus trend with ${range.compareLabel} comparison`,
         );
+
+        const points = activityChart.querySelectorAll(".line-point");
+        points.forEach((point) => {
+          point.addEventListener("mouseenter", showActivityTooltip);
+          point.addEventListener("mousemove", showActivityTooltip);
+          point.addEventListener("mouseleave", hideActivityTooltip);
+        });
       }
 
       activityButtons.forEach((btn) => {
@@ -1942,6 +2126,10 @@
           renderActivityRange(btn.dataset.range);
         });
       });
+
+      if (activityChart) {
+        activityChart.addEventListener("mouseleave", hideActivityTooltip);
+      }
 
       renderActivityRange("week");
 
