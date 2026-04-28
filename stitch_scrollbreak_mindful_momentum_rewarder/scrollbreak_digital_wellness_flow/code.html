@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ScrollBreak - Transform Your Time</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary": "#003732",
+                    "inverse-on-surface": "#293231",
+                    "surface-tint": "#98d1c8",
+                    "background": "#0c1514",
+                    "tertiary-container": "#520704",
+                    "secondary-fixed": "#ffdeae",
+                    "secondary": "#ffd79b",
+                    "primary-fixed": "#b4eee4",
+                    "on-tertiary": "#61120c",
+                    "error-container": "#93000a",
+                    "tertiary-fixed-dim": "#ffb4a9",
+                    "on-primary-fixed-variant": "#124f48",
+                    "secondary-container": "#ffb211",
+                    "surface-container-high": "#232c2b",
+                    "on-secondary": "#432c00",
+                    "on-surface": "#dbe5e2",
+                    "on-secondary-fixed-variant": "#604100",
+                    "surface": "#0c1514",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed": "#00201c",
+                    "outline-variant": "#414846",
+                    "on-tertiary-fixed-variant": "#7f2920",
+                    "on-tertiary-container": "#da6d5f",
+                    "outline": "#8b9290",
+                    "surface-container": "#182120",
+                    "on-secondary-container": "#6b4800",
+                    "surface-container-highest": "#2d3735",
+                    "surface-variant": "#2d3735",
+                    "surface-container-low": "#141d1c",
+                    "on-primary-container": "#60978f",
+                    "on-secondary-fixed": "#281800",
+                    "on-surface-variant": "#c1c8c5",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed": "#410000",
+                    "primary": "#98d1c8",
+                    "tertiary-fixed": "#ffdad5",
+                    "inverse-surface": "#dbe5e2",
+                    "primary-fixed-dim": "#98d1c8",
+                    "surface-dim": "#0c1514",
+                    "secondary-fixed-dim": "#ffba3f",
+                    "inverse-primary": "#2f6760",
+                    "surface-bright": "#323b3a",
+                    "error": "#ffb4ab",
+                    "primary-container": "#002c27",
+                    "on-background": "#dbe5e2",
+                    "tertiary": "#ffb4a9",
+                    "surface-container-lowest": "#07100f"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "2xl": "1rem",
+                    "3xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Manrope"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Manrope', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-glow {
+            background: radial-gradient(circle at 50% -20%, #124f48 0%, #0c1514 60%);
+        }
+        .editorial-shadow {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface selection:bg-primary selection:text-on-primary min-h-screen flex flex-col">
+<!-- Top Navigation (Contextually Suppressed labels but brand visible) -->
+<header class="fixed top-0 w-full z-50 bg-[#0c1514]/60 backdrop-blur-xl flex justify-between items-center px-6 h-16">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#98d1c8]" style="font-variation-settings: 'FILL' 1;">spa</span>
+<span class="text-xl font-bold text-[#98d1c8] tracking-tight font-manrope">ScrollBreak</span>
+</div>
+<div class="hidden md:flex gap-6 items-center">
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">How it works</a>
+<a class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors" href="#">Science</a>
+</div>
+</header>
+<main class="flex-grow flex flex-col md:flex-row items-center justify-center px-6 pt-24 pb-12 gap-12 lg:gap-24 bg-glow">
+<!-- Left Column: Value Prop / Onboarding Narrative -->
+<section class="w-full max-w-lg space-y-8 md:text-left text-center">
+<div class="space-y-4">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-container text-on-primary-container text-xs font-bold uppercase tracking-widest">
+                    Digital Sanctuary
+                </span>
+<h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-on-surface leading-[1.1]">
+                    Transform scrolling <br/>
+<span class="text-primary italic">into progress.</span>
+</h1>
+<p class="text-lg text-on-surface-variant leading-relaxed max-w-md mx-auto md:mx-0">
+                    Break the infinite loop. We help you reclaim 2.5 hours of focus daily by replacing passive consumption with mindful growth.
+                </p>
+</div>
+<!-- Bento-style Benefit Cards (Mobile: Carousel style feel, Desktop: Grid) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant/10 flex flex-col gap-3 group hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">timer</span>
+<h3 class="font-bold text-on-surface">Focus Flow</h3>
+<p class="text-sm text-on-surface-variant">Redirect scroll-triggers to high-value learning paths.</p>
+</div>
+<div class="p-6 rounded-3xl bg-surface-container-low border border-outline-variant/10 flex flex-col gap-3 group hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">auto_graph</span>
+<h3 class="font-bold text-on-surface">Visual Growth</h3>
+<p class="text-sm text-on-surface-variant">Watch your digital forest thrive as you save focus time.</p>
+</div>
+</div>
+<!-- Social Proof / Contextual Image -->
+<div class="hidden md:block relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-3xl blur opacity-20 group-hover:opacity-30 transition duration-1000"></div>
+<div class="relative bg-surface-container-highest rounded-3xl overflow-hidden aspect-video editorial-shadow">
+<img alt="Clean desk with minimal technology" class="w-full h-full object-cover grayscale-[20%] group-hover:scale-105 transition-transform duration-700" data-alt="A minimalist desk setup with a single laptop, a small green plant, and soft morning light streaming through a window, calm atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzeST-tVdAd4LRcaRuBNVvPehni4jZWqcXC5GjbwPMXbUA1DxYlWtXjO8kfw7yN-pDiSocSBnAtFVKjaI76YpWUYItf21I_mGXVPMgKxkEJyWpK2rS25rXnVbyX5fIpHXBnHMtLh238QsNFskgKSgH5TU6-AqYUpMThSBiDsIYFGp-KT_WIsW1ZGHzH8VbDrRc3JX_I1urJFilFYkKoHRZY9YQC91tcIJ65Vo_CocQaLJh386XBjKGaRVTYRUn5Ph8swZXXylFuAEn"/>
+</div>
+</div>
+</section>
+<!-- Right Column: Login / Sign Up Form -->
+<section class="w-full max-w-md">
+<div class="bg-surface-container-high/80 backdrop-blur-2xl p-8 md:p-10 rounded-[2.5rem] editorial-shadow border border-outline-variant/5">
+<div class="mb-8 text-center md:text-left">
+<h2 class="text-2xl font-bold text-on-surface">Welcome back</h2>
+<p class="text-on-surface-variant text-sm">Choose your preferred way to sign in.</p>
+</div>
+<!-- Social Sign-On -->
+<div class="flex flex-col gap-3 mb-8">
+<button class="w-full h-14 flex items-center justify-center gap-3 px-6 rounded-2xl bg-surface-container-highest text-on-surface font-semibold hover:bg-surface-bright transition-all active:scale-95">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="currentColor"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="currentColor"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="currentColor"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.66l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="currentColor"></path>
+</svg>
+                        Continue with Google
+                    </button>
+<button class="w-full h-14 flex items-center justify-center gap-3 px-6 rounded-2xl bg-surface-container-highest text-on-surface font-semibold hover:bg-surface-bright transition-all active:scale-95">
+<svg class="w-5 h-5" viewbox="0 0 24 24">
+<path d="M17.05 20.28c-.98.95-2.05 1.78-3.12 1.72-1.07-.05-1.42-.69-2.67-.69-1.25 0-1.64.66-2.66.72-1.03.05-1.99-.71-3-1.68C4.01 18.72 2.5 15.27 2.5 12.1c0-4.95 3.19-7.56 6.26-7.56 1.62 0 3.04.88 3.86.88.82 0 2.55-1.07 4.54-1.07 2.37.05 4.11 1.08 5.17 2.65-4.23 1.98-3.54 7.73.43 9.47-.89 2.25-2.13 3.9-3.71 5.81zm-1.89-16.7c.91-1.12 1.54-2.67 1.36-4.22-1.33.05-2.94.88-3.9 1.99-.86.99-1.61 2.59-1.41 4.09 1.48.11 3.03-.73 3.95-1.86z" fill="currentColor"></path>
+</svg>
+                        Continue with Apple
+                    </button>
+</div>
+<div class="relative flex items-center gap-4 mb-8">
+<div class="flex-grow h-px bg-outline-variant/20"></div>
+<span class="text-xs font-bold text-outline uppercase tracking-widest">Or email</span>
+<div class="flex-grow h-px bg-outline-variant/20"></div>
+</div>
+<!-- Email Form -->
+<form class="space-y-5" onsubmit="return false;">
+<div class="space-y-2">
+<label class="block text-xs font-bold text-primary uppercase tracking-widest ml-1">Email address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-lg">mail</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-low border-none rounded-2xl text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/30 transition-all outline-none" placeholder="name@example.com" type="email"/>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center ml-1">
+<label class="block text-xs font-bold text-outline uppercase tracking-widest">Password</label>
+<a class="text-xs font-bold text-primary hover:underline" href="#">Forgot?</a>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline text-lg">lock</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-low border-none rounded-2xl text-on-surface placeholder:text-outline focus:ring-2 focus:ring-primary/30 transition-all outline-none" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<button class="w-full h-14 bg-gradient-to-br from-primary to-inverse-primary text-on-primary font-bold rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/40 active:scale-[0.98] transition-all mt-4">
+                        Sign In
+                    </button>
+</form>
+<p class="text-center mt-8 text-sm text-on-surface-variant">
+                    New to ScrollBreak? <a class="text-primary font-bold hover:underline" href="#">Create an account</a>
+</p>
+</div>
+<!-- Contextual Footer -->
+<footer class="mt-8 text-center px-4">
+<p class="text-[10px] text-outline uppercase tracking-[0.2em] leading-relaxed">
+                    By continuing, you agree to our <br class="sm:hidden"/>
+<a class="hover:text-on-surface transition-colors" href="#">Privacy Policy</a> &amp; 
+                    <a class="hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+</p>
+</footer>
+</section>
+</main>
+<!-- Bottom Decorative Glow -->
+<div class="fixed bottom-0 left-0 w-full h-32 bg-gradient-to-t from-primary/10 to-transparent pointer-events-none"></div>
+<!-- Navigation Shell Suppressed as per Task Intent (Transactional Screen) -->
+</body></html>

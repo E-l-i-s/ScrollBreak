@@ -1,0 +1,1380 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ScrollBreak — Transform Scrolling into Progress</title>
+    <meta name="description" content="Break the infinite scroll. Reclaim 2.5 hours daily by replacing passive consumption with mindful growth. Earn rewards for focus." />
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        color-scheme: dark;
+        --background: #0c1514;
+        --surface: #182120;
+        --surface-low: #141d1c;
+        --surface-high: #232c2b;
+        --surface-highest: #2d3735;
+        --surface-bright: #323b3a;
+        --surface-lowest: #07100f;
+        --on-surface: #dbe5e2;
+        --on-surface-variant: #c1c8c5;
+        --outline-variant: #414846;
+        --outline: #8b9290;
+        --primary: #98d1c8;
+        --primary-container: #002c27;
+        --primary-fixed: #b4eee4;
+        --on-primary: #003732;
+        --inverse-primary: #2f6760;
+        --secondary: #ffd79b;
+        --secondary-container: #ffb211;
+        --secondary-fixed: #ffdeae;
+        --tertiary: #ffb4a9;
+        --tertiary-container: #520704;
+        --error: #ffb4ab;
+        --glow: rgba(152, 209, 200, 0.25);
+        --shadow: rgba(0, 0, 0, 0.45);
+        --radius-xl: 28px;
+        --radius-lg: 20px;
+        --radius-md: 16px;
+        --radius-pill: 999px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Manrope", sans-serif;
+        background: var(--background);
+        color: var(--on-surface);
+        min-height: 100vh;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 1, "wght" 500, "GRAD" 0, "opsz" 24;
+      }
+
+      /* Ambient Background */
+      .ambient {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .blob {
+        position: absolute;
+        width: 520px;
+        height: 520px;
+        border-radius: 50%;
+        filter: blur(80px);
+        opacity: 0.55;
+        mix-blend-mode: screen;
+        animation: float 18s ease-in-out infinite;
+      }
+
+      .blob.primary {
+        background: radial-gradient(circle, rgba(152, 209, 200, 0.35) 0%, rgba(152, 209, 200, 0) 70%);
+        top: -120px;
+        left: -120px;
+      }
+
+      .blob.secondary {
+        background: radial-gradient(circle, rgba(255, 215, 155, 0.3) 0%, rgba(255, 215, 155, 0) 70%);
+        bottom: -160px;
+        right: -80px;
+        animation-delay: -6s;
+      }
+
+      .blob.tertiary {
+        background: radial-gradient(circle, rgba(255, 180, 169, 0.28) 0%, rgba(255, 180, 169, 0) 70%);
+        top: 40%;
+        left: 55%;
+        animation-delay: -12s;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+        50% { transform: translate3d(40px, -30px, 0) scale(1.05); }
+      }
+
+      /* Cursor Glow */
+      .cursor {
+        position: fixed;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(152, 209, 200, 0.32) 0%, rgba(152, 209, 200, 0.18) 30%, rgba(12, 21, 20, 0) 70%);
+        filter: blur(6px);
+        mix-blend-mode: screen;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        will-change: transform;
+        z-index: 10;
+      }
+
+      /* Header */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        background: rgba(12, 21, 20, 0.75);
+        border-bottom: 1px solid rgba(65, 72, 70, 0.3);
+        transition: background 0.3s ease;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 32px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        font-size: 1.25rem;
+        letter-spacing: -0.02em;
+        color: var(--primary);
+      }
+
+      .brand .icon {
+        font-size: 26px;
+        transition: transform 0.3s ease;
+      }
+
+      .brand:hover .icon {
+        transform: rotate(15deg) scale(1.1);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        font-size: 14px;
+        color: var(--on-surface-variant);
+        font-weight: 500;
+      }
+
+      .nav-links a {
+        position: relative;
+        transition: color 0.3s ease;
+        padding: 4px 0;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--primary);
+        transition: width 0.3s ease;
+        border-radius: 1px;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Mobile Menu */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--on-surface);
+        cursor: pointer;
+        padding: 4px;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 120px 32px 80px;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        gap: 60px;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        min-height: calc(100vh - 80px);
+      }
+
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        border-radius: var(--radius-pill);
+        background: rgba(0, 44, 39, 0.7);
+        color: var(--primary);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        border: 1px solid rgba(152, 209, 200, 0.2);
+      }
+
+      .hero h1 {
+        font-size: clamp(2.8rem, 5.5vw, 4.5rem);
+        line-height: 1.05;
+        margin: 20px 0;
+        letter-spacing: -0.02em;
+        font-weight: 800;
+      }
+
+      .hero h1 span {
+        color: var(--primary);
+        font-style: italic;
+        position: relative;
+      }
+
+      .hero h1 span::after {
+        content: "";
+        position: absolute;
+        bottom: 4px;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background: rgba(152, 209, 200, 0.2);
+        border-radius: 4px;
+        z-index: -1;
+      }
+
+      .hero p {
+        font-size: 18px;
+        color: var(--on-surface-variant);
+        max-width: 540px;
+        line-height: 1.7;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 32px;
+      }
+
+      .btn {
+        padding: 16px 32px;
+        border-radius: var(--radius-pill);
+        border: 1px solid transparent;
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 0.02em;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+        text-align: center;
+        font-family: "Manrope", sans-serif;
+      }
+
+      .btn.primary {
+        background: linear-gradient(135deg, var(--primary), var(--inverse-primary));
+        color: var(--on-primary);
+        box-shadow: 0 16px 32px rgba(152, 209, 200, 0.2);
+      }
+
+      .btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 48px rgba(152, 209, 200, 0.35);
+      }
+
+      .btn.ghost {
+        background: rgba(45, 55, 53, 0.6);
+        border-color: rgba(65, 72, 70, 0.5);
+        color: var(--on-surface);
+        backdrop-filter: blur(10px);
+      }
+
+      .btn.ghost:hover {
+        background: rgba(45, 55, 53, 0.8);
+        border-color: rgba(152, 209, 200, 0.3);
+        transform: translateY(-1px);
+      }
+
+      .btn .material-symbols-outlined {
+        font-size: 18px;
+        transition: transform 0.3s ease;
+      }
+
+      .btn:hover .material-symbols-outlined {
+        transform: translateX(3px);
+      }
+
+      /* Hero Stats */
+      .hero-stats {
+        margin-top: 40px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+      }
+
+      .stat-card {
+        padding: 20px;
+        border-radius: var(--radius-lg);
+        background: rgba(24, 33, 32, 0.8);
+        border: 1px solid rgba(65, 72, 70, 0.4);
+        backdrop-filter: blur(14px);
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(152, 209, 200, 0.4);
+      }
+
+      .stat-card .label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--outline);
+        font-weight: 600;
+      }
+
+      .stat-card .value {
+        font-size: 24px;
+        font-weight: 800;
+        margin-top: 8px;
+        letter-spacing: -0.02em;
+      }
+
+      .stat-card .value span {
+        color: var(--secondary);
+      }
+
+      /* Hero Visual */
+      .hero-visual {
+        position: relative;
+        display: grid;
+        place-items: center;
+      }
+
+      .hero-visual::before {
+        content: "";
+        position: absolute;
+        inset: 20% 10%;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(152, 209, 200, 0.2), transparent 70%);
+        filter: blur(20px);
+        z-index: 0;
+      }
+
+      .screen-stack {
+        position: relative;
+        width: min(440px, 90vw);
+        height: 540px;
+      }
+
+      .screen-stack img {
+        position: absolute;
+        border-radius: 32px;
+        box-shadow: 0 30px 60px var(--shadow);
+        border: 1px solid rgba(65, 72, 70, 0.4);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+      }
+
+      .screen-stack img:hover {
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+      }
+
+      .screen-stack img.primary {
+        width: 76%;
+        left: 0;
+        top: 40px;
+        transform: rotate(-4deg);
+        z-index: 1;
+      }
+
+      .screen-stack img.primary:hover {
+        transform: rotate(-4deg) translateY(-8px);
+      }
+
+      .screen-stack img.secondary {
+        width: 72%;
+        right: 0;
+        top: 0;
+        transform: rotate(4deg);
+        z-index: 2;
+      }
+
+      .screen-stack img.secondary:hover {
+        transform: rotate(4deg) translateY(-8px);
+      }
+
+      .screen-stack img.tertiary {
+        width: 66%;
+        right: 12%;
+        bottom: 0;
+        transform: rotate(-1deg);
+        z-index: 0;
+      }
+
+      .screen-stack img.tertiary:hover {
+        transform: rotate(-1deg) translateY(-8px);
+      }
+
+      /* Sections */
+      .section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 32px;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 32px;
+        margin-bottom: 48px;
+        flex-wrap: wrap;
+      }
+
+      .section-title h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin: 0;
+      }
+
+      .section-title p {
+        color: var(--on-surface-variant);
+        max-width: 520px;
+        line-height: 1.7;
+        font-size: 16px;
+      }
+
+      /* Feature Grid */
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+      }
+
+      .feature-card {
+        background: rgba(24, 33, 32, 0.78);
+        border-radius: var(--radius-lg);
+        padding: 28px;
+        border: 1px solid rgba(65, 72, 70, 0.5);
+        backdrop-filter: blur(16px);
+        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        opacity: 0;
+        transition: opacity 0.35s ease;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(152, 209, 200, 0.5);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .feature-card:hover::before {
+        opacity: 1;
+      }
+
+      .feature-card .icon {
+        font-size: 32px;
+        color: var(--primary);
+        margin-bottom: 16px;
+        display: inline-block;
+        transition: transform 0.35s ease;
+      }
+
+      .feature-card:hover .icon {
+        transform: scale(1.1);
+      }
+
+      .feature-card h3 {
+        margin: 0 0 10px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--on-surface-variant);
+        line-height: 1.6;
+        font-size: 14px;
+      }
+
+      /* Highlight Section */
+      .highlight {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        align-items: center;
+      }
+
+      .highlight-card {
+        background: rgba(45, 55, 53, 0.6);
+        border-radius: var(--radius-xl);
+        padding: 36px;
+        border: 1px solid rgba(65, 72, 70, 0.45);
+        backdrop-filter: blur(18px);
+      }
+
+      .highlight-card strong {
+        color: var(--secondary);
+        font-weight: 700;
+      }
+
+      .highlight-card h2 {
+        font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin: 16px 0;
+        line-height: 1.15;
+      }
+
+      .highlight-card p {
+        color: var(--on-surface-variant);
+        line-height: 1.7;
+        font-size: 16px;
+      }
+
+      .highlight-screen {
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        border: 1px solid rgba(65, 72, 70, 0.4);
+        box-shadow: 0 24px 52px rgba(0, 0, 0, 0.45);
+        transition: transform 0.5s ease;
+        max-width: 480px;
+        margin: 0 auto;
+      }
+
+      .highlight-screen img {
+        max-height: 420px;
+        object-fit: contain;
+        width: 100%;
+      }
+
+      .screen-stack img:hover {
+        z-index: 10 !important;
+      }
+
+      .highlight-screen:hover {
+        transform: scale(1.02);
+      }
+
+      .highlight-screen img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      /* Email Subscription Sections */
+      .cta-section {
+        position: relative;
+        overflow: hidden;
+        padding: 80px 32px;
+        margin: 48px auto;
+        max-width: 1100px;
+        border-radius: 40px;
+        background: linear-gradient(140deg, rgba(0, 44, 39, 0.9), rgba(12, 21, 20, 0.95));
+        border: 1px solid rgba(152, 209, 200, 0.3);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+      }
+
+      .cta-section::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top, rgba(152, 209, 200, 0.2), transparent 60%);
+        opacity: 0.8;
+        pointer-events: none;
+      }
+
+      .cta-content {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: 32px;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+      }
+
+      .cta-text h2 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.2rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.15;
+      }
+
+      .cta-text p {
+        margin: 12px 0 0;
+        color: var(--on-surface-variant);
+        line-height: 1.7;
+        font-size: 16px;
+      }
+
+      .cta-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .form-toggle {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .form-toggle button {
+        padding: 10px 20px;
+        border-radius: var(--radius-pill);
+        border: 1px solid rgba(65, 72, 70, 0.5);
+        background: rgba(24, 33, 32, 0.6);
+        color: var(--on-surface-variant);
+        font-family: "Manrope", sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .form-toggle button.active {
+        background: var(--primary-container);
+        color: var(--primary);
+        border-color: rgba(152, 209, 200, 0.3);
+      }
+
+      .form-toggle button:hover:not(.active) {
+        background: rgba(45, 55, 53, 0.8);
+      }
+
+      .kit-form-container {
+        min-height: 200px;
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+      }
+
+      /* Rewards Section */
+      .rewards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 24px;
+      }
+
+      .reward-card {
+        background: rgba(24, 33, 32, 0.78);
+        border-radius: var(--radius-lg);
+        padding: 32px;
+        border: 1px solid rgba(65, 72, 70, 0.5);
+        backdrop-filter: blur(16px);
+        transition: transform 0.35s ease, border-color 0.35s ease;
+        text-align: center;
+      }
+
+      .reward-card:hover {
+        transform: translateY(-8px);
+        border-color: rgba(255, 215, 155, 0.4);
+      }
+
+      .reward-card .icon {
+        font-size: 40px;
+        color: var(--secondary);
+        margin-bottom: 16px;
+      }
+
+      .reward-card h3 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0 0 10px;
+      }
+
+      .reward-card p {
+        color: var(--on-surface-variant);
+        line-height: 1.6;
+        font-size: 14px;
+        margin: 0;
+      }
+
+      /* Footer */
+      .footer {
+        padding: 48px 32px;
+        text-align: center;
+        color: var(--outline);
+        font-size: 13px;
+        border-top: 1px solid rgba(65, 72, 70, 0.3);
+        margin-top: 48px;
+      }
+
+      .footer a {
+        color: var(--on-surface-variant);
+        transition: color 0.3s ease;
+      }
+
+      .footer a:hover {
+        color: var(--primary);
+      }
+
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin-bottom: 16px;
+      }
+
+      /* Scroll Reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px) scale(0.98);
+        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .reveal.in-view {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      /* Responsive */
+      @media (max-width: 1024px) {
+        .hero {
+          grid-template-columns: 1fr;
+          padding-top: 100px;
+          gap: 48px;
+        }
+
+        .highlight {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-content {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-stats {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .hero {
+          padding: 88px 20px 60px;
+        }
+
+        .section {
+          padding: 60px 20px;
+        }
+
+        .hero-stats {
+          grid-template-columns: 1fr;
+        }
+
+        .stat-card .value {
+          font-size: 20px;
+        }
+
+        .screen-stack {
+          height: 400px;
+        }
+
+        .btn {
+          width: 100%;
+          justify-content: center;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        .cta-section {
+          padding: 48px 20px;
+          border-radius: 28px;
+        }
+
+        .section-title {
+          flex-direction: column;
+          gap: 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav {
+          padding: 14px 16px;
+        }
+
+        .hero h1 {
+          font-size: 2.2rem;
+        }
+
+        .feature-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+
+        html {
+          scroll-behavior: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Ambient Background -->
+    <div class="ambient">
+      <div class="blob primary"></div>
+      <div class="blob secondary"></div>
+      <div class="blob tertiary"></div>
+    </div>
+
+    <!-- Cursor Glow -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress" style="position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--secondary)); z-index: 100; transition: width 0.1s ease;"></div>
+
+    <!-- Header -->
+    <header class="site-header" id="header">
+      <nav class="nav">
+        <a href="#hero" class="brand">
+          <span class="material-symbols-outlined icon">spa</span>
+          ScrollBreak
+        </a>
+        <nav class="nav-links">
+          <a href="#features">How it works</a>
+          <a href="#insights">Mindful insights</a>
+          <a href="#rewards">Rewards</a>
+          <a href="#subscribe">Subscribe</a>
+        </nav>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero" id="hero">
+        <div class="hero-content reveal">
+          <span class="pill">
+            <span class="material-symbols-outlined" style="font-size: 16px">spa</span>
+            Digital Sanctuary
+          </span>
+          <h1>
+            Transform scrolling<br />
+            <span>into progress.</span>
+          </h1>
+          <p>
+            ScrollBreak turns mindless feeds into mindful momentum. Track reclaimed time, grow your focus streaks, and unlock real-world rewards for the hours you save.
+          </p>
+          <div class="hero-actions">
+            <a href="#subscribe" class="btn primary">
+              Start your reset
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
+            <a href="#features" class="btn ghost">See the flow</a>
+          </div>
+            <div class="hero-stats">
+            <div class="stat-card">
+              <div class="label">Time saved</div>
+              <div class="value" data-counter="75" data-suffix="m">0</div>
+              <div style="font-size: 12px; color: var(--on-surface-variant); margin-top: 4px;">today</div>
+            </div>
+            <div class="stat-card">
+              <div class="label">Momentum</div>
+              <div class="value" data-counter="12" data-suffix="-day streak">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="label">BreakPoints</div>
+              <div class="value" data-counter="2450" data-suffix="">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" data-delay="150">
+          <div class="screen-stack">
+            <img class="primary" src="stitch_scrollbreak_mindful_momentum_rewarder/onboarding_login/screen.png" alt="ScrollBreak onboarding screen" />
+            <img class="secondary" src="stitch_scrollbreak_mindful_momentum_rewarder/dashboard/screen.png" alt="ScrollBreak dashboard screen" />
+            <img class="tertiary" src="stitch_scrollbreak_mindful_momentum_rewarder/rewards_marketplace/screen.png" alt="ScrollBreak rewards marketplace screen" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="section" id="features">
+        <div class="section-title reveal">
+          <div>
+            <h2>Focus flow, designed for calm.</h2>
+            <p>
+              Every interaction mirrors the app's tactile, glassy UI: soft gradients, bold metrics, and deep contrast that keeps you grounded.
+            </p>
+          </div>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card reveal">
+            <span class="material-symbols-outlined icon">timer</span>
+            <h3>Focus Flow</h3>
+            <p>Replace endless scrolling with a guided breath and a learning ritual.</p>
+          </div>
+          <div class="feature-card reveal" data-delay="80">
+            <span class="material-symbols-outlined icon">auto_graph</span>
+            <h3>Visual Growth</h3>
+            <p>Watch your momentum garden bloom with each reclaimed minute.</p>
+          </div>
+          <div class="feature-card reveal" data-delay="140">
+            <span class="material-symbols-outlined icon">local_fire_department</span>
+            <h3>Streak Energy</h3>
+            <p>Celebrate streaks with soft glow highlights and milestone insights.</p>
+          </div>
+          <div class="feature-card reveal" data-delay="200">
+            <span class="material-symbols-outlined icon">stars</span>
+            <h3>Rewarded Progress</h3>
+            <p>Convert saved time into BreakPoints for curated digital and real-world perks.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Insights Section -->
+      <section class="section highlight" id="insights">
+        <div class="highlight-card reveal">
+          <span class="pill" style="margin-bottom: 16px">
+            <span class="material-symbols-outlined" style="font-size: 16px">insights</span>
+            Mindful Insights
+          </span>
+          <h2>See your progress in a glance.</h2>
+          <p>
+            Daily focus summaries, gentle nudges, and clean charts make your achievements tangible. <strong>Clarity over noise</strong> — every stat is intentional.
+          </p>
+          <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn ghost" onclick="alert('Interactive demo coming soon! 🚀')">
+              <span class="material-symbols-outlined" style="font-size: 18px;">play_circle</span>
+              Try Interactive Demo
+            </button>
+            <a href="#rewards" class="btn ghost">Explore the dashboard</a>
+          </div>
+        </div>
+        <div class="highlight-screen reveal" data-delay="120" style="cursor: pointer;" onclick="this.style.transform = this.style.transform ? '' : 'scale(1.05) rotate(1deg)'">
+          <img src="stitch_scrollbreak_mindful_momentum_rewarder/profile_insights_2/screen.png" alt="Profile insights screen" style="max-height: 420px; object-fit: contain;" />
+          <div style="position: absolute; bottom: 12px; right: 12px; background: rgba(12, 21, 20, 0.8); backdrop-filter: blur(8px); padding: 8px 14px; border-radius: 999px; font-size: 12px; color: var(--primary); border: 1px solid rgba(152, 209, 200, 0.3);">
+            Click to interact ↗
+          </div>
+        </div>
+      </section>
+
+      <!-- Rewards Section -->
+      <section class="section" id="rewards">
+        <div class="section-title reveal">
+          <div>
+            <h2>Earn rewards that reinforce balance.</h2>
+            <p>
+              Your saved attention becomes BreakPoints, unlocking mindful experiences and premium wellness perks.
+            </p>
+          </div>
+        </div>
+        <div class="rewards-grid">
+          <div class="reward-card reveal">
+            <span class="material-symbols-outlined icon">shopping_basket</span>
+            <h3>Curated Marketplace</h3>
+            <p>Redeem for digital detox kits, serene playlists, or artisan coffee.</p>
+          </div>
+          <div class="reward-card reveal" data-delay="80">
+            <span class="material-symbols-outlined icon">self_improvement</span>
+            <h3>Guided Sessions</h3>
+            <p>Book 45-minute guided resets with progress-linked discounts.</p>
+          </div>
+          <div class="reward-card reveal" data-delay="140">
+            <span class="material-symbols-outlined icon">verified</span>
+            <h3>Verified Rituals</h3>
+            <p>Unlock streak-certified habits and share badges with your community.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Email Subscription Section -->
+      <section class="cta-section" id="subscribe">
+        <div class="cta-content">
+          <div class="cta-text reveal">
+            <h2>Reclaim your time, starting today.</h2>
+            <p>
+              Join ScrollBreak's early access list. Choose your path below and be the first to experience mindful momentum.
+            </p>
+          </div>
+          <div class="cta-form reveal" data-delay="100">
+            <div class="form-toggle">
+              <button class="active" onclick="showForm('customers')" id="btn-customers">I'm a Customer</button>
+              <button onclick="showForm('partners')" id="btn-partners">I'm a Partner</button>
+            </div>
+            <div class="kit-form-container" id="kit-form-container" style="min-height: 150px;">
+              <!-- Customer Form (Default visible) -->
+              <div class="kit-form-wrapper" id="kit-customers">
+                <div style="text-align: center; padding: 24px; border: 1px solid rgba(152, 209, 200, 0.2); border-radius: var(--radius-lg); background: rgba(24, 33, 32, 0.5);">
+                  <span class="material-symbols-outlined" style="font-size: 36px; color: var(--primary); margin-bottom: 12px;">person_add</span>
+                  <h3 style="color: var(--on-surface); margin-bottom: 8px; font-size: 18px;">Join as a Customer</h3>
+                  <p style="color: var(--on-surface-variant); font-size: 14px; margin-bottom: 16px;">Get early access and mindful tips.</p>
+                  <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
+                    <input type="email" id="customer-email" placeholder="your@email.com" required style="flex: 1; min-width: 200px; max-width: 320px; padding: 14px 20px; border-radius: var(--radius-pill); border: 1px solid rgba(65, 72, 70, 0.5); background: var(--surface-low); color: var(--on-surface); font-family: 'Manrope', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s ease;" onfocus="this.style.borderColor='var(--primary)'; this.style.boxShadow='0 0 0 3px rgba(152, 209, 200, 0.15)'" onblur="this.style.borderColor='rgba(65, 72, 70, 0.5)'; this.style.boxShadow='none'">
+                    <button onclick="submitKitForm('customers')" class="btn primary" style="padding: 14px 28px; white-space: nowrap;">Get Early Access</button>
+                  </div>
+                  <p style="color: var(--outline); font-size: 11px; margin-top: 12px;">We respect your privacy. Unsubscribe at any time.</p>
+                  <div id="customer-message" style="display: none; margin-top: 12px; padding: 12px; border-radius: var(--radius-md); background: rgba(152, 209, 200, 0.1);"></div>
+                </div>
+              </div>
+              <!-- Partner Form (Hidden by default) -->
+              <div class="kit-form-wrapper" id="kit-partners" style="display: none;">
+                <div style="text-align: center; padding: 24px; border: 1px solid rgba(255, 215, 155, 0.2); border-radius: var(--radius-lg); background: rgba(24, 33, 32, 0.5);">
+                  <span class="material-symbols-outlined" style="font-size: 36px; color: var(--secondary); margin-bottom: 12px;">handshake</span>
+                  <h3 style="color: var(--on-surface); margin-bottom: 8px; font-size: 18px;">Join as a Partner</h3>
+                  <p style="color: var(--on-surface-variant); font-size: 14px; margin-bottom: 16px;">Offer rewards and reach mindful users.</p>
+                  <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
+                    <input type="email" id="partner-email" placeholder="your@business.com" required style="flex: 1; min-width: 200px; max-width: 320px; padding: 14px 20px; border-radius: var(--radius-pill); border: 1px solid rgba(65, 72, 70, 0.5); background: var(--surface-low); color: var(--on-surface); font-family: 'Manrope', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s ease;" onfocus="this.style.borderColor='var(--secondary)'; this.style.boxShadow='0 0 0 3px rgba(255, 215, 155, 0.15)'" onblur="this.style.borderColor='rgba(65, 72, 70, 0.5)'; this.style.boxShadow='none'">
+                    <button onclick="submitKitForm('partners')" class="btn primary" style="background: linear-gradient(135deg, var(--secondary), #ffb211); color: #432c00; padding: 14px 28px; white-space: nowrap;">Partner With Us</button>
+                  </div>
+                  <p style="color: var(--outline); font-size: 11px; margin-top: 12px;">We respect your privacy. Unsubscribe at any time.</p>
+                  <div id="partner-message" style="display: none; margin-top: 12px; padding: 12px; border-radius: var(--radius-md); background: rgba(255, 215, 155, 0.1);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Contact</a>
+      </div>
+      <p>ScrollBreak © 2026 — Digital sanctuary for mindful momentum.</p>
+    </footer>
+
+    <!-- Kit.com Forms - Load both scripts -->
+    <script async data-uid="4081f41f6f" src="https://scrollbreak.kit.com/4081f41f6f/index.js"></script>
+    <script async data-uid="df006f669c" src="https://scrollbreak.kit.com/df006f669c/index.js"></script>
+
+    <!-- Scripts -->
+    <script>
+      // Smooth cursor glow effect (desktop only)
+      const cursor = document.getElementById("cursor");
+      const prefersFinePointer = window.matchMedia("(pointer: fine)").matches;
+
+      if (!prefersFinePointer) {
+        cursor.remove();
+      } else {
+        const size = 260;
+        const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        const pos = { x: mouse.x, y: mouse.y };
+
+        window.addEventListener("mousemove", (event) => {
+          mouse.x = event.clientX;
+          mouse.y = event.clientY;
+          cursor.style.opacity = "1";
+        });
+
+        const render = () => {
+          pos.x += (mouse.x - pos.x) * 0.12;
+          pos.y += (mouse.y - pos.y) * 0.12;
+          cursor.style.transform = `translate3d(${pos.x - size / 2}px, ${pos.y - size / 2}px, 0)`;
+          requestAnimationFrame(render);
+        };
+        render();
+      }
+
+      // Animated counter for stats
+      function animateCounter(el, target, suffix = "") {
+        let current = 0;
+        const increment = target / 60;
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          el.textContent = Math.floor(current) + suffix;
+        }, 16);
+      }
+
+      // Scroll reveal animations with counter animation
+      const reveals = document.querySelectorAll(".reveal");
+      const observer =
+        "IntersectionObserver" in window
+          ? new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    entry.target.classList.add("in-view");
+
+                    // Animate counters in this section
+                    const counters = entry.target.querySelectorAll("[data-counter]");
+                    counters.forEach((counter) => {
+                      const target = parseInt(counter.dataset.counter);
+                      const suffix = counter.dataset.suffix || "";
+                      animateCounter(counter, target, suffix);
+                    });
+
+                    observer.unobserve(entry.target);
+                  }
+                });
+              },
+              { threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
+            )
+          : null;
+
+      reveals.forEach((el) => {
+        const delay = el.dataset.delay;
+        if (delay) {
+          el.style.transitionDelay = `${delay}ms`;
+        }
+        if (observer) {
+          observer.observe(el);
+        } else {
+          el.classList.add("in-view");
+        }
+      });
+
+      // Kit.com form toggle
+      function showForm(type) {
+        const customersForm = document.getElementById("kit-customers");
+        const partnersForm = document.getElementById("kit-partners");
+        const btnCustomers = document.getElementById("btn-customers");
+        const btnPartners = document.getElementById("btn-partners");
+
+        if (type === "customers") {
+          customersForm.style.display = "block";
+          partnersForm.style.display = "none";
+          btnCustomers.classList.add("active");
+          btnPartners.classList.remove("active");
+        } else {
+          customersForm.style.display = "none";
+          partnersForm.style.display = "block";
+          btnPartners.classList.add("active");
+          btnCustomers.classList.remove("active");
+        }
+      }
+
+      // Form submission handler for custom forms
+      function submitKitForm(type) {
+        const emailInput = document.getElementById(type === "customers" ? "customer-email" : "partner-email");
+        const messageDiv = document.getElementById(type === "customers" ? "customer-message" : "partner-message");
+        const email = emailInput.value;
+
+        if (!email || !email.includes("@")) {
+          messageDiv.style.display = "block";
+          messageDiv.style.color = "var(--error)";
+          messageDiv.innerHTML = "Please enter a valid email address.";
+          return;
+        }
+
+        // Show loading state
+        messageDiv.style.display = "block";
+        messageDiv.style.color = "var(--primary)";
+        messageDiv.innerHTML = "Submitting...";
+
+        // Simulate API call (replace with actual Kit.com API integration)
+        setTimeout(() => {
+          messageDiv.style.color = type === "customers" ? "var(--primary)" : "var(--secondary)";
+          messageDiv.innerHTML = `✓ Thanks! We'll be in touch at <strong>${email}</strong>`;
+          emailInput.value = "";
+
+          // Here you would integrate with Kit.com API:
+          // fetch('https://api.convertkit.com/v3/forms/[FORM_ID]/subscribe', {...})
+          console.log(`Subscribed ${type}: ${email}`);
+        }, 800);
+      }
+
+      // Allow Enter key to submit
+      document.querySelectorAll('#customer-email, #partner-email').forEach(input => {
+        input.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            const type = this.id.includes('customer') ? 'customers' : 'partners';
+            submitKitForm(type);
+          }
+        });
+      });
+
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const headerOffset = 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+
+            // Close mobile menu if open
+            const navLinks = document.querySelector(".nav-links");
+            if (navLinks.style.display === "flex") {
+              navLinks.style.display = "none";
+              document.querySelector(".mobile-menu-btn .material-symbols-outlined").textContent = "menu";
+            }
+          }
+        });
+      });
+
+      // Header background on scroll
+      const header = document.getElementById("header");
+      const scrollProgress = document.getElementById("scroll-progress");
+      const sections = document.querySelectorAll("section[id]");
+      const navLinks = document.querySelectorAll(".nav-links a");
+
+      window.addEventListener("scroll", () => {
+        const currentScroll = window.pageYOffset;
+
+        // Header background
+        if (currentScroll > 50) {
+          header.style.background = "rgba(12, 21, 20, 0.9)";
+        } else {
+          header.style.background = "rgba(12, 21, 20, 0.75)";
+        }
+
+        // Scroll progress bar
+        const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (currentScroll / windowHeight) * 100;
+        scrollProgress.style.width = progress + "%";
+
+        // Active nav link highlighting
+        let currentSection = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 100;
+          if (currentScroll >= sectionTop) {
+            currentSection = section.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.style.color = "";
+          if (link.getAttribute("href") === "#" + currentSection) {
+            link.style.color = "var(--primary)";
+          }
+        });
+      });
+
+      // Mobile menu toggle
+      const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+      const navLinks = document.querySelector(".nav-links");
+
+      if (mobileMenuBtn) {
+        mobileMenuBtn.addEventListener("click", () => {
+          const isOpen = navLinks.style.display === "flex";
+          navLinks.style.display = isOpen ? "none" : "flex";
+          navLinks.style.flexDirection = "column";
+          navLinks.style.position = "absolute";
+          navLinks.style.top = "100%";
+          navLinks.style.left = "0";
+          navLinks.style.right = "0";
+          navLinks.style.background = "rgba(12, 21, 20, 0.95)";
+          navLinks.style.padding = "16px";
+          navLinks.style.borderBottom = "1px solid rgba(65, 72, 70, 0.3)";
+          navLinks.style.zIndex = "49";
+          mobileMenuBtn.querySelector(".material-symbols-outlined").textContent = isOpen ? "menu" : "close";
+        });
+      }
+
+      // Interactive stat cards hover effect
+      document.querySelectorAll(".stat-card").forEach((card) => {
+        card.addEventListener("mouseenter", function () {
+          this.style.transform = "translateY(-6px) scale(1.02)";
+        });
+        card.addEventListener("mouseleave", function () {
+          this.style.transform = "translateY(0) scale(1)";
+        });
+      });
+
+      // Interactive feature cards - click to expand info
+      document.querySelectorAll(".feature-card").forEach((card) => {
+        card.addEventListener("click", function () {
+          this.classList.toggle("active");
+        });
+      });
+
+      // Add parallax effect to hero visual
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const heroVisual = document.querySelector(".hero-visual");
+        if (heroVisual && scrolled < window.innerHeight) {
+          heroVisual.style.transform = `translateY(${scrolled * 0.15}px)`;
+        }
+      });
+
+      // Animate hero stats on load
+      window.addEventListener("load", () => {
+        const statValues = document.querySelectorAll(".stat-card .value");
+        statValues.forEach((el, index) => {
+          setTimeout(() => {
+            el.style.transition = "transform 0.4s ease, opacity 0.4s ease";
+            el.style.transform = "scale(1.1)";
+            setTimeout(() => {
+              el.style.transform = "scale(1)";
+            }, 400);
+          }, index * 150);
+        });
+      });
+    </script>
+  </body>
+</html>

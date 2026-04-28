@@ -1,0 +1,110 @@
+MVP Product Prompt: ScrollBreak
+Problem Statement
+Users struggle with uncontrolled short-form media consumption. What begins as a few minutes of scrolling often extends into hours of lost time, driven by anxiety, loneliness, boredom, fear of missing out, and procrastination. Modern social media is engineered to capture and extend attention, leading to degraded focus, reduced productivity, and diminished well-being.
+Vision
+Create an app that transforms idle scrolling time into tracked, rewarded productive activities. Instead of fighting the urge to scroll, we provide a compelling alternative: users earn points for engaging in meaningful activities, redeem rewards, and build a visible record of their progress—all while reducing screen dependency.
+User Journey
+Problem Loop
+User has free time
+User defaults to short-form media (TikTok, Instagram Reels, YouTube Shorts, etc.)
+User loses track of time; one video becomes dozens
+Hours later, user realizes the time wasted and feels regret
+Solution Loop
+User recognizes a moment of free time and feels urge to scroll
+User opens app instead, motivated to earn points and avoid scrolling
+User selects an alternative activity (real-world task, longer-form content, hobby, exercise)
+User completes activity, logs it, earns points, and sees progress
+User gains a sense of achievement and reduced guilt; points unlock rewards
+Root Causes of Scrolling Behavior
+Anxiety Scrolling: Using content as a coping mechanism for stress or worry
+Loneliness & Lack of Social Circles: Seeking connection through parasocial relationships on social media
+Boredom: Filling empty moments with stimulation
+Escape from Reality: Avoiding difficult tasks, feelings, or responsibilities
+Fear of Missing Out (FOMO): Compulsive checking for updates and trends
+Distraction & Procrastination: Avoidance behavior when facing challenging work
+Core Features (MVP)
+1. Authentication & Profile
+Simple login/sign-up (email or social)
+User profile with display name and preferences
+Password reset and account settings
+2. Activity Logging & Point System
+Users log completed activities with timestamps
+Predefined activity categories (Exercise, Reading, Creative Work, Learning, Social, Tasks, Hobbies, etc.)
+Point system: activities earn different points based on duration and category
+Custom activity creation for user flexibility
+3. Dashboard & Statistics
+Overview of today's points earned
+Weekly/monthly progress charts
+Activity breakdown by category
+Time saved estimates (minutes not spent scrolling)
+Streak counter (days of logged activities)
+4. Geolocation-Based Goals (Optional for MVP)
+Set location-specific goals (e.g., "No scrolling at home between 9 PM–10 AM")
+Geofence notifications and check-ins
+Location history and compliance tracking
+5. Rewards & Coupons
+Points → Rewards marketplace
+Partner discounts/coupons (coffee shops, gyms, apps, etc.)
+Tiered rewards (small, medium, large redemptions)
+Personal rewards list (user-defined, e.g., "buy a coffee," "movie night")
+6. Sessions & Time Tracking
+Log duration of activities in real-time or retrospectively
+Session history with timestamps
+Insights into peak productivity times
+Reminders to log activities
+7. Settings & Preferences
+Notification frequency and timing
+Point earning rules customization
+Privacy settings
+Data export options
+Theme (light/dark mode)
+Proposed User Flows
+Flow 1: Logging an Activity
+User opens app during free moment
+Taps "Log Activity"
+Selects category (or creates custom)
+Enters duration (timer or manual entry)
+Notes optional context
+Confirms → Points awarded, celebration animation
+Progress update reflected on dashboard
+Flow 2: Claiming a Reward
+User navigates to "Rewards"
+Browses available rewards by point cost
+Selects reward, reviews details (coupon code, terms)
+Redeems using accumulated points
+Receives confirmation + redemption code
+Uses code at partner or for personal reward
+Flow 3: Checking Progress
+User opens dashboard
+Sees today's points, weekly/monthly trends
+Reviews activity breakdown and streaks
+Gets motivational insight ("You've saved 12 hours this month!")
+Success Metrics
+Engagement: DAU/MAU, session frequency, activity logging rate
+Behavior Change: Reduction in self-reported scrolling time, screen time correlations
+Retention: D7, D30 retention rates
+Reward Redemption: % of points redeemed vs. earned
+User Satisfaction: NPS, app store rating
+Out of Scope (Post-MVP)
+Integration with device screen time APIs
+Advanced ML-based activity suggestions
+Social/community features (leaderboards, friend challenges)
+Premium subscription tiers
+Mobile app notifications and push strategies (advanced)
+Analytics dashboard for admins
+Integration with third-party fitness trackers
+Technical Considerations
+Platform: Web-first (responsive) or native iOS/Android (define clearly)
+Authentication: Email/password or OAuth (Google, Apple)
+Database: User profiles, activities, points, rewards, transactions
+Geolocation: Optional; use device GPS or approximate location
+Analytics: Track user behavior, feature adoption, engagement funnels
+Scalability: Plan for growth; consider cloud infrastructure early
+Success Definition
+An MVP is successful when:
+Users can sign up, log in, and create a profile
+Users can log activities and see points awarded in real-time
+Dashboard clearly visualizes progress and trends
+Users can browse and redeem rewards
+Core user journey (scrolling urge → log activity → earn points → see progress) is intuitive and satisfying
+Retention and engagement metrics exceed benchmarks (define internally)
