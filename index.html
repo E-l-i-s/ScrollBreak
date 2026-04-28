@@ -1008,18 +1008,14 @@
             Daily focus summaries, gentle nudges, and clean charts make your achievements tangible. <strong>Clarity over noise</strong> — every stat is intentional.
           </p>
           <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
-            <button class="btn ghost" onclick="alert('Interactive demo coming soon! 🚀')">
-              <span class="material-symbols-outlined" style="font-size: 18px;">play_circle</span>
-              Try Interactive Demo
-            </button>
-            <a href="#rewards" class="btn ghost">Explore the dashboard</a>
+            <a href="#subscribe" class="btn primary">
+              Get Early Access
+              <span class="material-symbols-outlined">arrow_forward</span>
+            </a>
           </div>
         </div>
-        <div class="highlight-screen reveal" data-delay="120" style="cursor: pointer;" onclick="this.style.transform = this.style.transform ? '' : 'scale(1.05) rotate(1deg)'">
+        <div class="highlight-screen reveal" data-delay="120">
           <img src="stitch_scrollbreak_mindful_momentum_rewarder/profile_insights_2/screen.png" alt="Profile insights screen" style="max-height: 420px; object-fit: contain;" />
-          <div style="position: absolute; bottom: 12px; right: 12px; background: rgba(12, 21, 20, 0.8); backdrop-filter: blur(8px); padding: 8px 14px; border-radius: 999px; font-size: 12px; color: var(--primary); border: 1px solid rgba(152, 209, 200, 0.3);">
-            Click to interact ↗
-          </div>
         </div>
       </section>
 
@@ -1135,27 +1131,29 @@
 
       // Scroll reveal animations with counter animation
       const reveals = document.querySelectorAll(".reveal");
+
+      function revealElement(el) {
+        el.classList.add("in-view");
+        const counters = el.querySelectorAll("[data-counter]");
+        counters.forEach((counter) => {
+          const target = parseInt(counter.dataset.counter);
+          const suffix = counter.dataset.suffix || "";
+          animateCounter(counter, target, suffix);
+        });
+      }
+
       const observer =
         "IntersectionObserver" in window
           ? new IntersectionObserver(
               (entries) => {
                 entries.forEach((entry) => {
                   if (entry.isIntersecting) {
-                    entry.target.classList.add("in-view");
-
-                    // Animate counters in this section
-                    const counters = entry.target.querySelectorAll("[data-counter]");
-                    counters.forEach((counter) => {
-                      const target = parseInt(counter.dataset.counter);
-                      const suffix = counter.dataset.suffix || "";
-                      animateCounter(counter, target, suffix);
-                    });
-
+                    revealElement(entry.target);
                     observer.unobserve(entry.target);
                   }
                 });
               },
-              { threshold: 0.15, rootMargin: "0px 0px -50px 0px" },
+              { threshold: 0.05, rootMargin: "0px" },
             )
           : null;
 
@@ -1167,8 +1165,18 @@
         if (observer) {
           observer.observe(el);
         } else {
-          el.classList.add("in-view");
+          revealElement(el);
         }
+      });
+
+      // Also immediately reveal anything already in the viewport on page load
+      window.addEventListener("load", () => {
+        reveals.forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            revealElement(el);
+          }
+        });
       });
 
       // Kit.com form toggle
