@@ -879,11 +879,12 @@
         top: 0;
         height: 100%;
         display: block;
-        width: var(--progress, 0%);
+        width: 0%;
         border-radius: inherit;
         background: var(--bar-color, #98d1c8);
         box-shadow: 0 0 12px var(--bar-glow, rgba(152, 209, 200, 0.28));
-        min-width: 8px;
+        min-width: 0;
+        transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       .progress-label {
@@ -911,37 +912,49 @@
         font-size: 28px;
       }
 
-      .earn-progress {
+      .milestone {
         width: 100%;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
       }
 
-      .earn-progress .progress-track {
+      .milestone-track {
+        position: relative;
         width: 100%;
-        align-self: stretch;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(6, 14, 13, 0.7);
+        border: 1px solid rgba(58, 80, 75, 0.45);
+        overflow: hidden;
       }
 
-      .earn-progress .progress-fill {
+      .milestone-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 0%;
+        border-radius: inherit;
         background: linear-gradient(90deg, #98d1c8, #b4eee4);
         box-shadow: 0 0 16px rgba(152, 209, 200, 0.6);
+        transition: width 0.9s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
-      .earn-progress-header {
+      .milestone-header {
         display: flex;
         justify-content: space-between;
         font-size: 12px;
         color: var(--on-surface-variant);
       }
 
-      .earn-progress-header span {
+      .milestone-header span {
         text-transform: uppercase;
         letter-spacing: 0.08em;
         font-size: 11px;
       }
 
-      .earn-progress-header strong {
+      .milestone-header strong {
         color: #f8c77b;
         font-weight: 700;
       }
@@ -1602,8 +1615,8 @@
                 <div class="progress-track">
                   <span
                     class="progress-fill"
+                    data-progress="78"
                     style="
-                      --progress: 78%;
                       --bar-color: #98d1c8;
                       --bar-glow: rgba(152, 209, 200, 0.35);
                     "
@@ -1615,8 +1628,8 @@
                 <div class="progress-track">
                   <span
                     class="progress-fill"
+                    data-progress="62"
                     style="
-                      --progress: 62%;
                       --bar-color: #f8c77b;
                       --bar-glow: rgba(248, 199, 123, 0.35);
                     "
@@ -1640,18 +1653,13 @@
               Turn focus gains into real-world rewards. Every minute of focus is
               currency for growth.
             </p>
-            <div class="earn-progress">
-              <div class="earn-progress-header">
+            <div class="milestone">
+              <div class="milestone-header">
                 <span>Next Milestone</span>
                 <strong>1425 / 1500 XP</strong>
               </div>
-              <div class="progress-track small">
-                <span
-                  class="progress-fill"
-                  style="
-                    width: 95%;
-                  "
-                ></span>
+              <div class="milestone-track">
+                <div class="milestone-fill" data-progress="95"></div>
               </div>
             </div>
           </article>
@@ -1851,6 +1859,13 @@
           const target = parseInt(counter.dataset.counter);
           const suffix = counter.dataset.suffix || "";
           animateCounter(counter, target, suffix);
+        });
+        const progressBars = el.querySelectorAll("[data-progress]");
+        progressBars.forEach((bar) => {
+          const target = parseFloat(bar.dataset.progress);
+          if (Number.isFinite(target)) {
+            bar.style.width = `${target}%`;
+          }
         });
       }
 
