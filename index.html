@@ -257,7 +257,7 @@
 
       /* Hero Section */
       .hero {
-        padding: 120px 32px 80px;
+        padding: 84px 32px 80px;
         max-width: 1200px;
         margin: 0 auto;
         display: grid;
@@ -582,6 +582,10 @@
         padding: 80px 32px;
       }
 
+      #features {
+        padding-top: 112px;
+      }
+
       .section-title {
         display: flex;
         align-items: center;
@@ -606,143 +610,410 @@
       }
 
       /* Steps Grid */
+      #features .section-title {
+        justify-content: center;
+        text-align: center;
+      }
+
+      #features .section-title p {
+        margin: 14px auto 0;
+        max-width: 700px;
+      }
+
       .steps-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
+        gap: 14px;
+        max-width: 980px;
+        margin: 0 auto;
       }
 
-      .step-card {
-        background: rgba(24, 33, 32, 0.78);
-        border-radius: var(--radius-lg);
-        padding: 32px 28px;
-        border: 1px solid rgba(65, 72, 70, 0.5);
-        backdrop-filter: blur(16px);
-        transition:
-          transform 0.35s ease,
-          border-color 0.35s ease,
-          box-shadow 0.35s ease;
+      .step-card,
+      .insight-card {
+        background: var(--card-bg, #0f2422);
+        border: 1px solid var(--card-border, rgba(58, 80, 75, 0.55));
+        box-shadow: 0 22px 52px rgba(0, 0, 0, 0.28);
         position: relative;
         overflow: hidden;
       }
 
-      .step-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--primary), var(--secondary));
-        opacity: 0;
-        transition: opacity 0.35s ease;
+      .step-card > *,
+      .insight-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .step-card {
+        border-radius: 24px;
+        padding: 22px;
+        backdrop-filter: blur(12px);
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease,
+          box-shadow 0.3s ease;
       }
 
       .step-card:hover {
-        transform: translateY(-8px);
+        transform: translateY(-4px);
         border-color: rgba(152, 209, 200, 0.5);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      }
-
-      .step-card:hover::before {
-        opacity: 1;
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.3);
       }
 
       .step-number {
-        font-size: 52px;
-        font-weight: 800;
-        color: rgba(152, 209, 200, 0.1);
-        letter-spacing: -0.04em;
-        line-height: 1;
-        margin-bottom: -4px;
+        display: none;
       }
 
       .step-card .icon {
-        font-size: 32px;
-        color: var(--primary);
-        margin-bottom: 16px;
-        display: inline-block;
-        transition: transform 0.35s ease;
-      }
-
-      .step-card:hover .icon {
-        transform: scale(1.1);
+        width: 42px;
+        height: 42px;
+        border-radius: 16px;
+        border: 1px solid rgba(58, 80, 75, 0.55);
+        background: rgba(3, 11, 11, 0.86);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 14px;
+        font-size: 22px;
+        color: #f8c77b;
       }
 
       .step-card h3 {
-        margin: 0 0 10px;
-        font-size: 20px;
-        font-weight: 700;
+        margin: 0 0 12px;
+        font-size: 18px;
+        line-height: 1.25;
+        font-weight: 800;
+        letter-spacing: -0.01em;
       }
 
       .step-card p {
         margin: 0;
         color: var(--on-surface-variant);
-        line-height: 1.65;
-        font-size: 15px;
+        line-height: 1.6;
+        font-size: 14px;
       }
 
-      /* Highlight Section */
-      .highlight {
+      /* Metrics + Rewards Board */
+      .metrics-board {
+        position: relative;
+      }
+
+      .metrics-board .section-title {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .metrics-board .section-title p {
+        margin: 12px auto 0;
+        max-width: 640px;
+      }
+
+      .insight-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 48px;
-        align-items: center;
-      }
-
-      .highlight-card {
-        background: rgba(45, 55, 53, 0.6);
-        border-radius: var(--radius-xl);
-        padding: 36px;
-        border: 1px solid rgba(65, 72, 70, 0.45);
-        backdrop-filter: blur(18px);
-      }
-
-      .highlight-card strong {
-        color: var(--secondary);
-        font-weight: 700;
-      }
-
-      .highlight-card h2 {
-        font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        margin: 16px 0;
-        line-height: 1.15;
-      }
-
-      .highlight-card p {
-        color: var(--on-surface-variant);
-        line-height: 1.7;
-        font-size: 16px;
-      }
-
-      .highlight-screen {
-        border-radius: var(--radius-xl);
-        overflow: hidden;
-        border: 1px solid rgba(65, 72, 70, 0.4);
-        box-shadow: 0 24px 52px rgba(0, 0, 0, 0.45);
-        transition: transform 0.5s ease;
-        max-width: 480px;
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas:
+          "logging earn"
+          "insights insights";
+        gap: 16px;
+        max-width: 1000px;
         margin: 0 auto;
       }
 
-      .highlight-screen img {
-        max-height: 420px;
-        object-fit: contain;
-        width: 100%;
+      .insight-card {
+        border-radius: 20px;
+        padding: 24px;
+        backdrop-filter: blur(12px);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
       }
 
-      /* z-index for phone hover handled via transition-delay on .phone-mockup */
-
-      .highlight-screen:hover {
-        transform: scale(1.02);
+      .insight-card.logging-card {
+        grid-area: logging;
+        --card-bg: #0f2523;
+        --card-border: rgba(152, 209, 200, 0.28);
       }
 
-      .highlight-screen img {
+      .insight-card.earn-card {
+        grid-area: earn;
+        --card-bg: #111f1d;
+        --card-border: rgba(248, 199, 123, 0.38);
+      }
+
+      .insight-card.insights-card {
+        grid-area: insights;
+        --card-bg: #0e221f;
+        --card-border: rgba(152, 209, 200, 0.22);
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 24px;
+        align-items: center;
+      }
+
+      .insight-card .icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 14px;
+        border: 1px solid rgba(58, 80, 75, 0.55);
+        background: rgba(3, 11, 11, 0.86);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        color: #f8c77b;
+      }
+
+      .insight-card h2,
+      .insight-card h3 {
+        margin: 0;
+        font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+      }
+
+      .insight-card p {
+        margin: 0;
+        color: var(--on-surface-variant);
+        line-height: 1.6;
+        font-size: 14px;
+      }
+
+      .card-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .insights-copy {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .insights-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .insights-controls {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px;
+        border-radius: 999px;
+        background: rgba(2, 10, 10, 0.9);
+        border: 1px solid rgba(58, 80, 75, 0.5);
+      }
+
+      .insights-btn {
+        border: 0;
+        border-radius: 999px;
+        background: transparent;
+        color: var(--on-surface-variant);
+        padding: 6px 12px;
+        font-size: 12px;
+        font-weight: 700;
+        font-family: "Manrope", sans-serif;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .insights-btn.active {
+        background: rgba(152, 209, 200, 0.2);
+        color: #d8fffa;
+      }
+
+      .activity-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .activity-tag {
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(248, 199, 123, 0.45);
+        background: rgba(2, 10, 10, 0.9);
+        color: #f8c77b;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .activity-tag.accent {
+        border-color: rgba(255, 180, 169, 0.45);
+        color: #ffb4a9;
+      }
+
+      .progress-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .progress-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .progress-track {
+        position: relative;
+        flex: 1;
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(6, 14, 13, 0.7);
+        border: 1px solid rgba(58, 80, 75, 0.45);
+        overflow: hidden;
+      }
+
+      .progress-track.small {
+        height: 10px;
+      }
+
+      .progress-fill {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: var(--progress, 0%);
+        border-radius: inherit;
+        background: var(--bar-color, #98d1c8);
+        box-shadow: 0 0 12px var(--bar-glow, rgba(152, 209, 200, 0.28));
+        min-width: 8px;
+      }
+
+      .progress-label {
+        min-width: 92px;
+        text-align: right;
+        font-size: 12px;
+        color: var(--on-surface-variant);
+      }
+
+      .earn-card {
+        align-items: center;
+        text-align: center;
+      }
+
+      .earn-icon {
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(3, 11, 11, 0.9);
+        border: 1px solid rgba(58, 80, 75, 0.55);
+        color: #f8c77b;
+        font-size: 28px;
+      }
+
+      .earn-progress {
         width: 100%;
-        height: auto;
-        display: block;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .earn-progress-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        color: var(--on-surface-variant);
+      }
+
+      .earn-progress-header span {
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 11px;
+      }
+
+      .earn-progress-header strong {
+        color: #f8c77b;
+        font-weight: 700;
+      }
+
+      .insight-stats {
+        display: flex;
+        gap: 28px;
+        flex-wrap: wrap;
+      }
+
+      .insight-stat {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .insight-stat .stat-value {
+        font-size: 28px;
+        font-weight: 700;
+        color: #b9f2e8;
+      }
+
+      .insight-stat .stat-label {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--on-surface-variant);
+      }
+
+      .insights-chart {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .chart-meta {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 12px;
+        color: var(--on-surface-variant);
+      }
+
+      .chart-total {
+        color: #d8fffa;
+        font-weight: 600;
+      }
+
+      .focus-chart {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(22px, 1fr));
+        align-items: end;
+        gap: 12px;
+        height: 170px;
+        padding: 8px 6px 0;
+        border-bottom: 1px solid rgba(58, 80, 75, 0.5);
+      }
+
+      .chart-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+        height: 100%;
+      }
+
+      .chart-fill {
+        width: 100%;
+        height: var(--height, 0%);
+        border-radius: 10px 10px 8px 8px;
+        background: var(--bar-color, #98d1c8);
+        box-shadow: inset 0 -10px 14px rgba(0, 0, 0, 0.25);
+        transition: height 0.4s ease, background 0.3s ease;
+        min-height: 8px;
+      }
+
+      .chart-bar span {
+        font-size: 10px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--on-surface-variant);
       }
 
       /* Email Subscription Sections */
@@ -849,49 +1120,6 @@
         mix-blend-mode: multiply;
       }
 
-      /* Rewards Section */
-      .rewards-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 24px;
-      }
-
-      .reward-card {
-        background: rgba(24, 33, 32, 0.78);
-        border-radius: var(--radius-lg);
-        padding: 32px;
-        border: 1px solid rgba(65, 72, 70, 0.5);
-        backdrop-filter: blur(16px);
-        transition:
-          transform 0.35s ease,
-          border-color 0.35s ease;
-        text-align: center;
-      }
-
-      .reward-card:hover {
-        transform: translateY(-8px);
-        border-color: rgba(255, 215, 155, 0.4);
-      }
-
-      .reward-card .icon {
-        font-size: 40px;
-        color: var(--secondary);
-        margin-bottom: 16px;
-      }
-
-      .reward-card h3 {
-        font-size: 20px;
-        font-weight: 700;
-        margin: 0 0 10px;
-      }
-
-      .reward-card p {
-        color: var(--on-surface-variant);
-        line-height: 1.6;
-        font-size: 14px;
-        margin: 0;
-      }
-
       /* Footer */
       .footer {
         padding: 48px 32px;
@@ -940,7 +1168,15 @@
           gap: 48px;
         }
 
-        .highlight {
+        .insight-grid {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "logging"
+            "earn"
+            "insights";
+        }
+
+        .insight-card.insights-card {
           grid-template-columns: 1fr;
         }
 
@@ -963,11 +1199,15 @@
         }
 
         .hero {
-          padding: 88px 20px 60px;
+          padding: 68px 20px 60px;
         }
 
         .section {
           padding: 60px 20px;
+        }
+
+        #features {
+          padding-top: 80px;
         }
 
         .hero-stats {
@@ -984,6 +1224,18 @@
 
         .steps-grid {
           grid-template-columns: 1fr;
+        }
+
+        .insight-card {
+          padding: 24px;
+        }
+
+        .focus-chart {
+          height: 150px;
+        }
+
+        .time-pill strong {
+          font-size: 36px;
         }
 
         .btn {
@@ -1211,27 +1463,24 @@
         </div>
         <div class="steps-grid">
           <div class="step-card reveal">
-            <div class="step-number">01</div>
             <span class="material-symbols-outlined icon">psychology</span>
-            <h3>Recognize &amp; Redirect</h3>
+            <h3>1. Recognize &amp; Redirect</h3>
             <p>
               When the urge to scroll hits, open ScrollBreak instead. Break the
               automatic reflex.
             </p>
           </div>
           <div class="step-card reveal" data-delay="80">
-            <div class="step-number">02</div>
             <span class="material-symbols-outlined icon">fitness_center</span>
-            <h3>Log Real Activity</h3>
+            <h3>2. Log Real Activity</h3>
             <p>
               Choose to read, exercise, or create. Start a session and focus on
               the physical world.
             </p>
           </div>
           <div class="step-card reveal" data-delay="160">
-            <div class="step-number">03</div>
             <span class="material-symbols-outlined icon">stars</span>
-            <h3>Earn &amp; Redeem</h3>
+            <h3>3. Earn &amp; Redeem</h3>
             <p>
               Get points based on duration. Build your streak and unlock partner
               rewards.
@@ -1240,88 +1489,157 @@
         </div>
       </section>
 
-      <!-- Insights Section -->
-      <section class="section highlight" id="insights">
-        <div class="highlight-card reveal">
-          <span class="pill" style="margin-bottom: 16px">
-            <span class="material-symbols-outlined" style="font-size: 16px"
-              >insights</span
-            >
-            Mindful Insights
-          </span>
-          <h2>See your progress in a glance.</h2>
-          <p>
-            Daily focus summaries, gentle nudges, and clean charts make your
-            achievements tangible. <strong>Clarity over noise</strong> — every
-            stat is intentional.
-          </p>
-          <div
-            style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap"
-          >
-            <a href="#subscribe" class="btn primary">
-              Get Early Access
-              <span class="material-symbols-outlined">arrow_forward</span>
-            </a>
-          </div>
-        </div>
-        <div
-          class="reveal"
-          data-delay="120"
-          style="
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-          "
-        >
-          <!-- Reuse the same phone-mockup class but override position to relative -->
-          <div
-            class="phone-mockup"
-            style="position: relative; width: min(260px, 50vw)"
-          >
-            <div class="phone-screen">
-              <img
-                src="stitch_scrollbreak_mindful_momentum_rewarder/profile_insights_2/screen.png"
-                alt="Profile insights screen"
-              />
-            </div>
-            <div class="phone-home"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Rewards Section -->
-      <section class="section" id="rewards">
+      <!-- Metrics + Rewards Section -->
+      <section class="section metrics-board" id="insights">
         <div class="section-title reveal">
           <div>
-            <h2>Earn rewards that reinforce balance.</h2>
+            <h2>Engineered for Focus</h2>
             <p>
-              Your saved attention becomes BreakPoints, unlocking mindful
-              experiences and premium wellness perks.
+              Scientifically backed tools to help you reclaim your cognitive
+              space.
             </p>
           </div>
         </div>
-        <div class="rewards-grid">
-          <div class="reward-card reveal">
-            <span class="material-symbols-outlined icon">shopping_basket</span>
-            <h3>Curated Marketplace</h3>
+        <div class="insight-grid">
+          <article class="insight-card logging-card reveal">
+            <div class="card-header">
+              <div>
+                <h3>Mindful Activity Logging</h3>
+                <p>
+                  Swap scrolling for reading, learning, or exercise. ScrollBreak
+                  detects infinite scroll behavior and suggests healthier
+                  alternatives tailored to your goals.
+                </p>
+              </div>
+              <span class="material-symbols-outlined icon">psychology</span>
+            </div>
+            <div class="activity-tags">
+              <span class="activity-tag">Reading +15XP</span>
+              <span class="activity-tag accent">Exercise +25XP</span>
+            </div>
+            <div class="progress-list">
+              <div class="progress-row">
+                <div class="progress-track">
+                  <span
+                    class="progress-fill"
+                    style="
+                      --progress: 78%;
+                      --bar-color: #98d1c8;
+                      --bar-glow: rgba(152, 209, 200, 0.35);
+                    "
+                  ></span>
+                </div>
+                <span class="progress-label">Daily Reading</span>
+              </div>
+              <div class="progress-row">
+                <div class="progress-track">
+                  <span
+                    class="progress-fill"
+                    style="
+                      --progress: 62%;
+                      --bar-color: #f8c77b;
+                      --bar-glow: rgba(248, 199, 123, 0.35);
+                    "
+                  ></span>
+                </div>
+                <span class="progress-label">Movement</span>
+              </div>
+            </div>
+          </article>
+
+          <article
+            class="insight-card earn-card reveal"
+            data-delay="60"
+            id="rewards"
+          >
+            <div class="earn-icon">
+              <span class="material-symbols-outlined">diamond</span>
+            </div>
+            <h3>Earn Rewards</h3>
             <p>
-              Redeem for digital detox kits, serene playlists, or artisan
-              coffee.
+              Turn focus gains into real-world rewards. Every minute of focus is
+              currency for growth.
             </p>
-          </div>
-          <div class="reward-card reveal" data-delay="80">
-            <span class="material-symbols-outlined icon">self_improvement</span>
-            <h3>Guided Sessions</h3>
-            <p>Book 45-minute guided resets with progress-linked discounts.</p>
-          </div>
-          <div class="reward-card reveal" data-delay="140">
-            <span class="material-symbols-outlined icon">verified</span>
-            <h3>Verified Rituals</h3>
-            <p>
-              Unlock streak-certified habits and share badges with your
-              community.
-            </p>
-          </div>
+            <div class="earn-progress">
+              <div class="earn-progress-header">
+                <span>Next Milestone</span>
+                <strong>1200 / 1500 XP</strong>
+              </div>
+              <div class="progress-track small">
+                <span
+                  class="progress-fill"
+                  style="
+                    --progress: 80%;
+                    --bar-color: #f8c77b;
+                    --bar-glow: rgba(248, 199, 123, 0.4);
+                  "
+                ></span>
+              </div>
+            </div>
+          </article>
+
+          <article class="insight-card insights-card reveal" data-delay="90">
+            <div class="insights-copy">
+              <div class="insights-header">
+                <h3>Deep Insights</h3>
+                <div
+                  class="insights-controls"
+                  role="tablist"
+                  aria-label="Activity range"
+                >
+                  <button
+                    type="button"
+                    class="insights-btn"
+                    data-range="today"
+                  >
+                    Today
+                  </button>
+                  <button
+                    type="button"
+                    class="insights-btn active"
+                    data-range="week"
+                  >
+                    Week
+                  </button>
+                  <button
+                    type="button"
+                    class="insights-btn"
+                    data-range="month"
+                  >
+                    Month
+                  </button>
+                </div>
+              </div>
+              <p>
+                Visualize your growth with advanced analytics. See exactly how
+                your focus improves over time and identify triggers that pull
+                you back into the scroll.
+              </p>
+              <div class="insight-stats">
+                <div class="insight-stat">
+                  <div class="stat-value" id="insight-focus">82%</div>
+                  <div class="stat-label">Focus Increase</div>
+                </div>
+                <div class="insight-stat">
+                  <div class="stat-value" id="insight-time">6.2h</div>
+                  <div class="stat-label">Time Saved</div>
+                </div>
+              </div>
+            </div>
+            <div class="insights-chart">
+              <div class="chart-meta">
+                <span id="activity-range-label">This Week</span>
+                <span class="chart-total" id="activity-range-total">
+                  16.4 hrs focused
+                </span>
+              </div>
+              <div
+                class="focus-chart"
+                id="activity-chart"
+                aria-live="polite"
+              ></div>
+            </div>
+          </article>
         </div>
       </section>
 
@@ -1329,10 +1647,10 @@
       <section class="cta-section" id="subscribe">
         <div class="cta-content">
           <div class="cta-text reveal">
-            <h2 id="cta-heading">Reclaim your time, starting today.</h2>
+            <h2 id="cta-heading">Ready to reclaim your time?</h2>
             <p id="cta-subtext">
-              Get early access to ScrollBreak. Be the first to track your focus
-              streaks and unlock rewards for the time you save.
+              Join thousands of others who have turned their scrolling habits
+              into a tool for personal growth.
             </p>
           </div>
           <div class="cta-form reveal" data-delay="100">
@@ -1355,7 +1673,17 @@
             >
               <!-- Customer Form: Tally embed (default visible) -->
               <div class="kit-form-wrapper" id="kit-customers">
-                <iframe class="tally-embed-frame" src="https://tally.so/embed/RGZ1BJ?alignLeft=1&hideTitle=1&dynamicHeight=1" loading="lazy" width="100%" height="157" frameborder="0" marginheight="0" marginwidth="0" title="null"></iframe>
+                <iframe
+                  class="tally-embed-frame"
+                  src="https://tally.so/embed/RGZ1BJ?alignLeft=1&hideTitle=1&dynamicHeight=1"
+                  loading="lazy"
+                  width="100%"
+                  height="157"
+                  frameborder="0"
+                  marginheight="0"
+                  marginwidth="0"
+                  title="null"
+                ></iframe>
               </div>
               <!-- Partner Form: Tally embed (hidden by default) -->
               <div
@@ -1363,7 +1691,17 @@
                 id="kit-partners"
                 style="display: none"
               >
-                <iframe class="tally-embed-frame" src="https://tally.so/embed/1Abzyg?alignLeft=1&hideTitle=1&dynamicHeight=1" loading="lazy" width="100%" height="157" frameborder="0" marginheight="0" marginwidth="0" title="null"></iframe>
+                <iframe
+                  class="tally-embed-frame"
+                  src="https://tally.so/embed/1Abzyg?alignLeft=1&hideTitle=1&dynamicHeight=1"
+                  loading="lazy"
+                  width="100%"
+                  height="157"
+                  frameborder="0"
+                  marginheight="0"
+                  marginwidth="0"
+                  title="null"
+                ></iframe>
               </div>
             </div>
           </div>
@@ -1473,12 +1811,108 @@
         });
       });
 
+      // Activity insights histogram
+      const activityRanges = {
+        today: {
+          label: "Today",
+          total: "1.8 hrs focused",
+          focus: "72%",
+          time: "1.8h",
+          color: "#f8c77b",
+          bars: [
+            { label: "8a", value: 18 },
+            { label: "10a", value: 28 },
+            { label: "12p", value: 40 },
+            { label: "2p", value: 30 },
+            { label: "4p", value: 22 },
+            { label: "6p", value: 12 },
+          ],
+        },
+        week: {
+          label: "This Week",
+          total: "16.4 hrs focused",
+          focus: "82%",
+          time: "6.2h",
+          color: "#98d1c8",
+          bars: [
+            { label: "Mon", value: 32 },
+            { label: "Tue", value: 44 },
+            { label: "Wed", value: 52 },
+            { label: "Thu", value: 60 },
+            { label: "Fri", value: 68 },
+            { label: "Sat", value: 54 },
+            { label: "Sun", value: 40 },
+          ],
+        },
+        month: {
+          label: "This Month",
+          total: "64.8 hrs focused",
+          focus: "89%",
+          time: "28.6h",
+          color: "#b4eee4",
+          bars: [
+            { label: "W1", value: 48 },
+            { label: "W2", value: 62 },
+            { label: "W3", value: 70 },
+            { label: "W4", value: 56 },
+            { label: "W5", value: 78 },
+          ],
+        },
+      };
+
+      const activityButtons = document.querySelectorAll(".insights-btn");
+      const activityChart = document.getElementById("activity-chart");
+      const activityRangeLabel = document.getElementById("activity-range-label");
+      const activityRangeTotal = document.getElementById("activity-range-total");
+      const insightFocus = document.getElementById("insight-focus");
+      const insightTime = document.getElementById("insight-time");
+
+      function renderActivityRange(rangeKey) {
+        const range = activityRanges[rangeKey];
+        if (!range || !activityChart) return;
+        const maxValue = Math.max(
+          ...range.bars.map((bar) => bar.value),
+          1,
+        );
+        activityChart.innerHTML = range.bars
+          .map((bar) => {
+            const height = Math.max((bar.value / maxValue) * 100, 8);
+            const color = bar.color || range.color || "#98d1c8";
+            return `
+              <div class="chart-bar" title="${bar.label}: ${bar.value} min focused">
+                <div class="chart-fill" style="--height: ${height}%; --bar-color: ${color}"></div>
+                <span>${bar.label}</span>
+              </div>
+            `;
+          })
+          .join("");
+        if (activityRangeLabel) activityRangeLabel.textContent = range.label;
+        if (activityRangeTotal) activityRangeTotal.textContent = range.total;
+        if (insightFocus) insightFocus.textContent = range.focus;
+        if (insightTime) insightTime.textContent = range.time;
+        activityButtons.forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.range === rangeKey);
+        });
+        activityChart.setAttribute(
+          "aria-label",
+          `${range.label} activity histogram`,
+        );
+      }
+
+      activityButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          renderActivityRange(btn.dataset.range);
+        });
+      });
+
+      renderActivityRange("week");
+
       // Form toggle — swaps form and heading/subtext
       const ctaCopy = {
         customers: {
-          heading: "Reclaim your time, starting today.",
+          heading: "Ready to reclaim your time?",
           subtext:
-            "Get early access to ScrollBreak. Be the first to track your focus streaks and unlock rewards for the time you save.",
+            "Join thousands of others who have turned their scrolling habits into a tool for personal growth.",
         },
         partners: {
           heading: "Partner with ScrollBreak.",
