@@ -889,6 +889,11 @@
     <!-- Scroll Progress Bar -->
     <div id="scroll-progress" style="position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--secondary)); z-index: 100; transition: width 0.1s ease;"></div>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="position: fixed; bottom: 32px; right: 32px; width: 48px; height: 48px; border-radius: 50%; background: var(--surface-high); border: 1px solid rgba(152, 209, 200, 0.3); color: var(--primary); cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.3); z-index: 50; transition: all 0.3s ease; backdrop-filter: blur(10px);" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 12px 32px rgba(152, 209, 200, 0.2)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)';">
+      <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+
     <!-- Header -->
     <header class="site-header" id="header">
       <nav class="nav">
@@ -1064,31 +1069,11 @@
             <div class="kit-form-container" id="kit-form-container" style="min-height: 150px;">
               <!-- Customer Form (Default visible) -->
               <div class="kit-form-wrapper" id="kit-customers">
-                <div style="text-align: center; padding: 24px; border: 1px solid rgba(152, 209, 200, 0.2); border-radius: var(--radius-lg); background: rgba(24, 33, 32, 0.5);">
-                  <span class="material-symbols-outlined" style="font-size: 36px; color: var(--primary); margin-bottom: 12px;">person_add</span>
-                  <h3 style="color: var(--on-surface); margin-bottom: 8px; font-size: 18px;">Join as a Customer</h3>
-                  <p style="color: var(--on-surface-variant); font-size: 14px; margin-bottom: 16px;">Get early access and mindful tips.</p>
-                  <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-                    <input type="email" id="customer-email" placeholder="your@email.com" required style="flex: 1; min-width: 200px; max-width: 320px; padding: 14px 20px; border-radius: var(--radius-pill); border: 1px solid rgba(65, 72, 70, 0.5); background: var(--surface-low); color: var(--on-surface); font-family: 'Manrope', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s ease;" onfocus="this.style.borderColor='var(--primary)'; this.style.boxShadow='0 0 0 3px rgba(152, 209, 200, 0.15)'" onblur="this.style.borderColor='rgba(65, 72, 70, 0.5)'; this.style.boxShadow='none'">
-                    <button onclick="submitKitForm('customers')" class="btn primary" style="padding: 14px 28px; white-space: nowrap;">Get Early Access</button>
-                  </div>
-                  <p style="color: var(--outline); font-size: 11px; margin-top: 12px;">We respect your privacy. Unsubscribe at any time.</p>
-                  <div id="customer-message" style="display: none; margin-top: 12px; padding: 12px; border-radius: var(--radius-md); background: rgba(152, 209, 200, 0.1);"></div>
-                </div>
+                <script async data-uid="4081f41f6f" src="https://scrollbreak.kit.com/4081f41f6f/index.js"></script>
               </div>
               <!-- Partner Form (Hidden by default) -->
               <div class="kit-form-wrapper" id="kit-partners" style="display: none;">
-                <div style="text-align: center; padding: 24px; border: 1px solid rgba(255, 215, 155, 0.2); border-radius: var(--radius-lg); background: rgba(24, 33, 32, 0.5);">
-                  <span class="material-symbols-outlined" style="font-size: 36px; color: var(--secondary); margin-bottom: 12px;">handshake</span>
-                  <h3 style="color: var(--on-surface); margin-bottom: 8px; font-size: 18px;">Join as a Partner</h3>
-                  <p style="color: var(--on-surface-variant); font-size: 14px; margin-bottom: 16px;">Offer rewards and reach mindful users.</p>
-                  <div style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;">
-                    <input type="email" id="partner-email" placeholder="your@business.com" required style="flex: 1; min-width: 200px; max-width: 320px; padding: 14px 20px; border-radius: var(--radius-pill); border: 1px solid rgba(65, 72, 70, 0.5); background: var(--surface-low); color: var(--on-surface); font-family: 'Manrope', sans-serif; font-size: 14px; outline: none; transition: border-color 0.3s ease;" onfocus="this.style.borderColor='var(--secondary)'; this.style.boxShadow='0 0 0 3px rgba(255, 215, 155, 0.15)'" onblur="this.style.borderColor='rgba(65, 72, 70, 0.5)'; this.style.boxShadow='none'">
-                    <button onclick="submitKitForm('partners')" class="btn primary" style="background: linear-gradient(135deg, var(--secondary), #ffb211); color: #432c00; padding: 14px 28px; white-space: nowrap;">Partner With Us</button>
-                  </div>
-                  <p style="color: var(--outline); font-size: 11px; margin-top: 12px;">We respect your privacy. Unsubscribe at any time.</p>
-                  <div id="partner-message" style="display: none; margin-top: 12px; padding: 12px; border-radius: var(--radius-md); background: rgba(255, 215, 155, 0.1);"></div>
-                </div>
+                <script async data-uid="df006f669c" src="https://scrollbreak.kit.com/df006f669c/index.js"></script>
               </div>
             </div>
           </div>
@@ -1105,10 +1090,6 @@
       </div>
       <p>ScrollBreak © 2026 — Digital sanctuary for mindful momentum.</p>
     </footer>
-
-    <!-- Kit.com Forms - Load both scripts -->
-    <script async data-uid="4081f41f6f" src="https://scrollbreak.kit.com/4081f41f6f/index.js"></script>
-    <script async data-uid="df006f669c" src="https://scrollbreak.kit.com/df006f669c/index.js"></script>
 
     <!-- Scripts -->
     <script>
@@ -1268,9 +1249,9 @@
             });
 
             // Close mobile menu if open
-            const navLinks = document.querySelector(".nav-links");
-            if (navLinks.style.display === "flex") {
-              navLinks.style.display = "none";
+            const anchorNavLinks = document.querySelector(".nav-links");
+            if (anchorNavLinks.style.display === "flex") {
+              anchorNavLinks.style.display = "none";
               document.querySelector(".mobile-menu-btn .material-symbols-outlined").textContent = "menu";
             }
           }
@@ -1280,8 +1261,9 @@
       // Header background on scroll
       const header = document.getElementById("header");
       const scrollProgress = document.getElementById("scroll-progress");
+      const backToTop = document.getElementById("back-to-top");
       const sections = document.querySelectorAll("section[id]");
-      const navLinks = document.querySelectorAll(".nav-links a");
+      const navLinkEls = document.querySelectorAll(".nav-links a");
 
       window.addEventListener("scroll", () => {
         const currentScroll = window.pageYOffset;
@@ -1298,6 +1280,13 @@
         const progress = (currentScroll / windowHeight) * 100;
         scrollProgress.style.width = progress + "%";
 
+        // Back to top button
+        if (currentScroll > 400) {
+          backToTop.style.display = "flex";
+        } else {
+          backToTop.style.display = "none";
+        }
+
         // Active nav link highlighting
         let currentSection = "";
         sections.forEach((section) => {
@@ -1307,7 +1296,7 @@
           }
         });
 
-        navLinks.forEach((link) => {
+        navLinkEls.forEach((link) => {
           link.style.color = "";
           if (link.getAttribute("href") === "#" + currentSection) {
             link.style.color = "var(--primary)";
@@ -1317,21 +1306,21 @@
 
       // Mobile menu toggle
       const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
-      const navLinks = document.querySelector(".nav-links");
+      const mobileNavLinks = document.querySelector(".nav-links");
 
       if (mobileMenuBtn) {
         mobileMenuBtn.addEventListener("click", () => {
-          const isOpen = navLinks.style.display === "flex";
-          navLinks.style.display = isOpen ? "none" : "flex";
-          navLinks.style.flexDirection = "column";
-          navLinks.style.position = "absolute";
-          navLinks.style.top = "100%";
-          navLinks.style.left = "0";
-          navLinks.style.right = "0";
-          navLinks.style.background = "rgba(12, 21, 20, 0.95)";
-          navLinks.style.padding = "16px";
-          navLinks.style.borderBottom = "1px solid rgba(65, 72, 70, 0.3)";
-          navLinks.style.zIndex = "49";
+          const isOpen = mobileNavLinks.style.display === "flex";
+          mobileNavLinks.style.display = isOpen ? "none" : "flex";
+          mobileNavLinks.style.flexDirection = "column";
+          mobileNavLinks.style.position = "absolute";
+          mobileNavLinks.style.top = "100%";
+          mobileNavLinks.style.left = "0";
+          mobileNavLinks.style.right = "0";
+          mobileNavLinks.style.background = "rgba(12, 21, 20, 0.95)";
+          mobileNavLinks.style.padding = "16px";
+          mobileNavLinks.style.borderBottom = "1px solid rgba(65, 72, 70, 0.3)";
+          mobileNavLinks.style.zIndex = "49";
           mobileMenuBtn.querySelector(".material-symbols-outlined").textContent = isOpen ? "menu" : "close";
         });
       }
