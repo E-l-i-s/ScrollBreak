@@ -4,10 +4,19 @@
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>ScrollBreak — Transform Scrolling into Progress</title>
-    <meta name="description" content="Break the infinite scroll. Reclaim 2.5 hours daily by replacing passive consumption with mindful growth. Earn rewards for focus." />
+    <meta
+      name="description"
+      content="Break the infinite scroll. Reclaim 2.5 hours daily by replacing passive consumption with mindful growth. Earn rewards for focus."
+    />
 
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
 
     <style>
       :root {
@@ -72,7 +81,11 @@
       }
 
       .material-symbols-outlined {
-        font-variation-settings: "FILL" 1, "wght" 500, "GRAD" 0, "opsz" 24;
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 500,
+          "GRAD" 0,
+          "opsz" 24;
       }
 
       /* Ambient Background */
@@ -96,28 +109,45 @@
       }
 
       .blob.primary {
-        background: radial-gradient(circle, rgba(152, 209, 200, 0.35) 0%, rgba(152, 209, 200, 0) 70%);
+        background: radial-gradient(
+          circle,
+          rgba(152, 209, 200, 0.35) 0%,
+          rgba(152, 209, 200, 0) 70%
+        );
         top: -120px;
         left: -120px;
       }
 
       .blob.secondary {
-        background: radial-gradient(circle, rgba(255, 215, 155, 0.3) 0%, rgba(255, 215, 155, 0) 70%);
+        background: radial-gradient(
+          circle,
+          rgba(255, 215, 155, 0.3) 0%,
+          rgba(255, 215, 155, 0) 70%
+        );
         bottom: -160px;
         right: -80px;
         animation-delay: -6s;
       }
 
       .blob.tertiary {
-        background: radial-gradient(circle, rgba(255, 180, 169, 0.28) 0%, rgba(255, 180, 169, 0) 70%);
+        background: radial-gradient(
+          circle,
+          rgba(255, 180, 169, 0.28) 0%,
+          rgba(255, 180, 169, 0) 70%
+        );
         top: 40%;
         left: 55%;
         animation-delay: -12s;
       }
 
       @keyframes float {
-        0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-        50% { transform: translate3d(40px, -30px, 0) scale(1.05); }
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+        50% {
+          transform: translate3d(40px, -30px, 0) scale(1.05);
+        }
       }
 
       /* Cursor Glow */
@@ -126,7 +156,12 @@
         width: 260px;
         height: 260px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(152, 209, 200, 0.32) 0%, rgba(152, 209, 200, 0.18) 30%, rgba(12, 21, 20, 0) 70%);
+        background: radial-gradient(
+          circle,
+          rgba(152, 209, 200, 0.32) 0%,
+          rgba(152, 209, 200, 0.18) 30%,
+          rgba(12, 21, 20, 0) 70%
+        );
         filter: blur(6px);
         mix-blend-mode: screen;
         pointer-events: none;
@@ -294,7 +329,10 @@
         font-weight: 700;
         font-size: 15px;
         letter-spacing: 0.02em;
-        transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          background 0.25s ease;
         display: inline-flex;
         align-items: center;
         gap: 10px;
@@ -304,7 +342,11 @@
       }
 
       .btn.primary {
-        background: linear-gradient(135deg, var(--primary), var(--inverse-primary));
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--inverse-primary)
+        );
         color: var(--on-primary);
         box-shadow: 0 16px 32px rgba(152, 209, 200, 0.2);
       }
@@ -350,7 +392,9 @@
         background: rgba(24, 33, 32, 0.8);
         border: 1px solid rgba(65, 72, 70, 0.4);
         backdrop-filter: blur(14px);
-        transition: transform 0.3s ease, border-color 0.3s ease;
+        transition:
+          transform 0.3s ease,
+          border-color 0.3s ease;
       }
 
       .stat-card:hover {
@@ -389,7 +433,11 @@
         position: absolute;
         inset: 20% 10%;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(152, 209, 200, 0.2), transparent 70%);
+        background: radial-gradient(
+          circle,
+          rgba(152, 209, 200, 0.2),
+          transparent 70%
+        );
         filter: blur(20px);
         z-index: 0;
       }
@@ -407,25 +455,27 @@
         border-radius: 44px;
         padding: 14px 8px 10px;
         box-shadow:
-          inset 0 0 0 1.5px rgba(255,255,255,0.12),
-          0 0 0 1px rgba(0,0,0,0.8),
-          0 40px 80px rgba(0,0,0,0.7);
+          inset 0 0 0 1.5px rgba(255, 255, 255, 0.12),
+          0 0 0 1px rgba(0, 0, 0, 0.8),
+          0 40px 80px rgba(0, 0, 0, 0.7);
         /* z-index delays: instant on hover-in (0s), delayed on hover-out (0.5s) */
-        transition: transform 0.6s cubic-bezier(0.16,1,0.3,1),
-                    box-shadow 0.6s ease,
-                    z-index 0s 0.5s;
+        transition:
+          transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.6s ease,
+          z-index 0s 0.5s;
       }
 
       .phone-mockup:hover {
         box-shadow:
-          inset 0 0 0 1.5px rgba(255,255,255,0.18),
-          0 0 0 1px rgba(0,0,0,0.8),
-          0 60px 100px rgba(0,0,0,0.8);
+          inset 0 0 0 1.5px rgba(255, 255, 255, 0.18),
+          0 0 0 1px rgba(0, 0, 0, 0.8),
+          0 60px 100px rgba(0, 0, 0, 0.8);
         z-index: 10;
         /* z-index jumps after 0.2s delay so the lift animation starts first */
-        transition: transform 0.6s cubic-bezier(0.16,1,0.3,1),
-                    box-shadow 0.6s ease,
-                    z-index 0s 0.2s;
+        transition:
+          transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.6s ease,
+          z-index 0s 0.2s;
       }
 
       /* Dynamic Island / notch */
@@ -452,7 +502,9 @@
         height: 30px;
         background: #2e2e30;
         border-radius: 2px 0 0 2px;
-        box-shadow: 0 46px 0 #2e2e30, 0 88px 0 #2e2e30;
+        box-shadow:
+          0 46px 0 #2e2e30,
+          0 88px 0 #2e2e30;
       }
 
       .phone-screen {
@@ -483,7 +535,7 @@
         transform: translateX(-50%);
         width: 34%;
         height: 4px;
-        background: rgba(255,255,255,0.25);
+        background: rgba(255, 255, 255, 0.25);
         border-radius: 3px;
       }
 
@@ -566,7 +618,10 @@
         padding: 32px 28px;
         border: 1px solid rgba(65, 72, 70, 0.5);
         backdrop-filter: blur(16px);
-        transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        transition:
+          transform 0.35s ease,
+          border-color 0.35s ease,
+          box-shadow 0.35s ease;
         position: relative;
         overflow: hidden;
       }
@@ -574,7 +629,9 @@
       .step-card::before {
         content: "";
         position: absolute;
-        top: 0; left: 0; right: 0;
+        top: 0;
+        left: 0;
+        right: 0;
         height: 3px;
         background: linear-gradient(90deg, var(--primary), var(--secondary));
         opacity: 0;
@@ -587,7 +644,9 @@
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
       }
 
-      .step-card:hover::before { opacity: 1; }
+      .step-card:hover::before {
+        opacity: 1;
+      }
 
       .step-number {
         font-size: 52px;
@@ -606,7 +665,9 @@
         transition: transform 0.35s ease;
       }
 
-      .step-card:hover .icon { transform: scale(1.1); }
+      .step-card:hover .icon {
+        transform: scale(1.1);
+      }
 
       .step-card h3 {
         margin: 0 0 10px;
@@ -692,7 +753,11 @@
         margin: 48px auto;
         max-width: 1100px;
         border-radius: 40px;
-        background: linear-gradient(140deg, rgba(0, 44, 39, 0.9), rgba(12, 21, 20, 0.95));
+        background: linear-gradient(
+          140deg,
+          rgba(0, 44, 39, 0.9),
+          rgba(12, 21, 20, 0.95)
+        );
         border: 1px solid rgba(152, 209, 200, 0.3);
         box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
       }
@@ -701,7 +766,11 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: radial-gradient(circle at top, rgba(152, 209, 200, 0.2), transparent 60%);
+        background: radial-gradient(
+          circle at top,
+          rgba(152, 209, 200, 0.2),
+          transparent 60%
+        );
         opacity: 0.8;
         pointer-events: none;
       }
@@ -768,7 +837,15 @@
       .kit-form-container {
         min-height: 200px;
         border-radius: var(--radius-lg);
-        overflow: hidden;
+        overflow: visible;
+      }
+
+      .kit-form-wrapper {
+        background: transparent !important;
+      }
+
+      .kit-form-wrapper iframe {
+        display: block;
       }
 
       /* Rewards Section */
@@ -784,7 +861,9 @@
         padding: 32px;
         border: 1px solid rgba(65, 72, 70, 0.5);
         backdrop-filter: blur(16px);
-        transition: transform 0.35s ease, border-color 0.35s ease;
+        transition:
+          transform 0.35s ease,
+          border-color 0.35s ease;
         text-align: center;
       }
 
@@ -842,7 +921,9 @@
       .reveal {
         opacity: 0;
         transform: translateY(32px) scale(0.98);
-        transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        transition:
+          opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       }
 
       .reveal.in-view {
@@ -967,10 +1048,52 @@
     <div class="cursor" id="cursor"></div>
 
     <!-- Scroll Progress Bar -->
-    <div id="scroll-progress" style="position: fixed; top: 0; left: 0; width: 0%; height: 3px; background: linear-gradient(90deg, var(--primary), var(--secondary)); z-index: 100; transition: width 0.1s ease;"></div>
+    <div
+      id="scroll-progress"
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 3px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        z-index: 100;
+        transition: width 0.1s ease;
+      "
+    ></div>
 
     <!-- Back to Top Button -->
-    <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="position: fixed; bottom: 32px; right: 32px; width: 48px; height: 48px; border-radius: 50%; background: var(--surface-high); border: 1px solid rgba(152, 209, 200, 0.3); color: var(--primary); cursor: pointer; display: none; align-items: center; justify-content: center; box-shadow: 0 8px 24px rgba(0,0,0,0.3); z-index: 50; transition: all 0.3s ease; backdrop-filter: blur(10px);" onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 12px 32px rgba(152, 209, 200, 0.2)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 8px 24px rgba(0,0,0,0.3)';">
+    <button
+      id="back-to-top"
+      onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      style="
+        position: fixed;
+        bottom: 32px;
+        right: 32px;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--surface-high);
+        border: 1px solid rgba(152, 209, 200, 0.3);
+        color: var(--primary);
+        cursor: pointer;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        z-index: 50;
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+      "
+      onmouseover="
+        this.style.transform = 'scale(1.1)';
+        this.style.boxShadow = '0 12px 32px rgba(152, 209, 200, 0.2)';
+      "
+      onmouseout="
+        this.style.transform = 'scale(1)';
+        this.style.boxShadow = '0 8px 24px rgba(0,0,0,0.3)';
+      "
+    >
       <span class="material-symbols-outlined">arrow_upward</span>
     </button>
 
@@ -1003,7 +1126,9 @@
             <span>into progress.</span>
           </h1>
           <p>
-            ScrollBreak turns mindless feeds into mindful momentum. Track reclaimed time, grow your focus streaks, and unlock real-world rewards for the hours you save.
+            ScrollBreak turns mindless feeds into mindful momentum. Track
+            reclaimed time, grow your focus streaks, and unlock real-world
+            rewards for the hours you save.
           </p>
           <div class="hero-actions">
             <a href="#subscribe" class="btn primary">
@@ -1012,15 +1137,25 @@
             </a>
             <a href="#features" class="btn ghost">See the flow</a>
           </div>
-            <div class="hero-stats">
+          <div class="hero-stats">
             <div class="stat-card">
               <div class="label">Time saved</div>
               <div class="value" data-counter="75" data-suffix="m">0</div>
-              <div style="font-size: 12px; color: var(--on-surface-variant); margin-top: 4px;">today</div>
+              <div
+                style="
+                  font-size: 12px;
+                  color: var(--on-surface-variant);
+                  margin-top: 4px;
+                "
+              >
+                today
+              </div>
             </div>
             <div class="stat-card">
               <div class="label">Momentum</div>
-              <div class="value" data-counter="12" data-suffix="-day streak">0</div>
+              <div class="value" data-counter="12" data-suffix="-day streak">
+                0
+              </div>
             </div>
             <div class="stat-card">
               <div class="label">BreakPoints</div>
@@ -1033,19 +1168,28 @@
           <div class="screen-stack">
             <div class="phone-mockup primary-phone">
               <div class="phone-screen">
-                <img src="stitch_scrollbreak_mindful_momentum_rewarder/onboarding_login/screen.png" alt="ScrollBreak onboarding screen" />
+                <img
+                  src="stitch_scrollbreak_mindful_momentum_rewarder/onboarding_login/screen.png"
+                  alt="ScrollBreak onboarding screen"
+                />
               </div>
               <div class="phone-home"></div>
             </div>
             <div class="phone-mockup secondary-phone">
               <div class="phone-screen">
-                <img src="stitch_scrollbreak_mindful_momentum_rewarder/dashboard/screen.png" alt="ScrollBreak dashboard screen" />
+                <img
+                  src="stitch_scrollbreak_mindful_momentum_rewarder/dashboard/screen.png"
+                  alt="ScrollBreak dashboard screen"
+                />
               </div>
               <div class="phone-home"></div>
             </div>
             <div class="phone-mockup tertiary-phone">
               <div class="phone-screen">
-                <img src="stitch_scrollbreak_mindful_momentum_rewarder/rewards_marketplace/screen.png" alt="ScrollBreak rewards marketplace screen" />
+                <img
+                  src="stitch_scrollbreak_mindful_momentum_rewarder/rewards_marketplace/screen.png"
+                  alt="ScrollBreak rewards marketplace screen"
+                />
               </div>
               <div class="phone-home"></div>
             </div>
@@ -1059,7 +1203,8 @@
           <div>
             <h2>The Anti-Scroll Loop</h2>
             <p>
-              We don't just block apps. We provide a compelling, rewarding alternative to the dopamine feed.
+              We don't just block apps. We provide a compelling, rewarding
+              alternative to the dopamine feed.
             </p>
           </div>
         </div>
@@ -1068,19 +1213,28 @@
             <div class="step-number">01</div>
             <span class="material-symbols-outlined icon">psychology</span>
             <h3>Recognize &amp; Redirect</h3>
-            <p>When the urge to scroll hits, open ScrollBreak instead. Break the automatic reflex.</p>
+            <p>
+              When the urge to scroll hits, open ScrollBreak instead. Break the
+              automatic reflex.
+            </p>
           </div>
           <div class="step-card reveal" data-delay="80">
             <div class="step-number">02</div>
             <span class="material-symbols-outlined icon">fitness_center</span>
             <h3>Log Real Activity</h3>
-            <p>Choose to read, exercise, or create. Start a session and focus on the physical world.</p>
+            <p>
+              Choose to read, exercise, or create. Start a session and focus on
+              the physical world.
+            </p>
           </div>
           <div class="step-card reveal" data-delay="160">
             <div class="step-number">03</div>
             <span class="material-symbols-outlined icon">stars</span>
             <h3>Earn &amp; Redeem</h3>
-            <p>Get points based on duration. Build your streak and unlock partner rewards.</p>
+            <p>
+              Get points based on duration. Build your streak and unlock partner
+              rewards.
+            </p>
           </div>
         </div>
       </section>
@@ -1089,26 +1243,45 @@
       <section class="section highlight" id="insights">
         <div class="highlight-card reveal">
           <span class="pill" style="margin-bottom: 16px">
-            <span class="material-symbols-outlined" style="font-size: 16px">insights</span>
+            <span class="material-symbols-outlined" style="font-size: 16px"
+              >insights</span
+            >
             Mindful Insights
           </span>
           <h2>See your progress in a glance.</h2>
           <p>
-            Daily focus summaries, gentle nudges, and clean charts make your achievements tangible. <strong>Clarity over noise</strong> — every stat is intentional.
+            Daily focus summaries, gentle nudges, and clean charts make your
+            achievements tangible. <strong>Clarity over noise</strong> — every
+            stat is intentional.
           </p>
-          <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+          <div
+            style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap"
+          >
             <a href="#subscribe" class="btn primary">
               Get Early Access
               <span class="material-symbols-outlined">arrow_forward</span>
             </a>
           </div>
         </div>
-        <div class="reveal" data-delay="120" style="display: flex; justify-content: center; align-items: flex-start;">
+        <div
+          class="reveal"
+          data-delay="120"
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+          "
+        >
           <!-- Reuse the same phone-mockup class but override position to relative -->
-          <div class="phone-mockup" style="position: relative; width: min(260px, 50vw);">
+          <div
+            class="phone-mockup"
+            style="position: relative; width: min(260px, 50vw)"
+          >
             <div class="phone-screen">
-              <img src="stitch_scrollbreak_mindful_momentum_rewarder/profile_insights_2/screen.png"
-                   alt="Profile insights screen" />
+              <img
+                src="stitch_scrollbreak_mindful_momentum_rewarder/profile_insights_2/screen.png"
+                alt="Profile insights screen"
+              />
             </div>
             <div class="phone-home"></div>
           </div>
@@ -1121,7 +1294,8 @@
           <div>
             <h2>Earn rewards that reinforce balance.</h2>
             <p>
-              Your saved attention becomes BreakPoints, unlocking mindful experiences and premium wellness perks.
+              Your saved attention becomes BreakPoints, unlocking mindful
+              experiences and premium wellness perks.
             </p>
           </div>
         </div>
@@ -1129,7 +1303,10 @@
           <div class="reward-card reveal">
             <span class="material-symbols-outlined icon">shopping_basket</span>
             <h3>Curated Marketplace</h3>
-            <p>Redeem for digital detox kits, serene playlists, or artisan coffee.</p>
+            <p>
+              Redeem for digital detox kits, serene playlists, or artisan
+              coffee.
+            </p>
           </div>
           <div class="reward-card reveal" data-delay="80">
             <span class="material-symbols-outlined icon">self_improvement</span>
@@ -1139,7 +1316,10 @@
           <div class="reward-card reveal" data-delay="140">
             <span class="material-symbols-outlined icon">verified</span>
             <h3>Verified Rituals</h3>
-            <p>Unlock streak-certified habits and share badges with your community.</p>
+            <p>
+              Unlock streak-certified habits and share badges with your
+              community.
+            </p>
           </div>
         </div>
       </section>
@@ -1148,24 +1328,57 @@
       <section class="cta-section" id="subscribe">
         <div class="cta-content">
           <div class="cta-text reveal">
-            <h2>Reclaim your time, starting today.</h2>
-            <p>
-              Join ScrollBreak's early access list. Choose your path below and be the first to experience mindful momentum.
+            <h2 id="cta-heading">Reclaim your time, starting today.</h2>
+            <p id="cta-subtext">
+              Get early access to ScrollBreak. Be the first to track your focus
+              streaks and unlock rewards for the time you save.
             </p>
           </div>
           <div class="cta-form reveal" data-delay="100">
             <div class="form-toggle">
-              <button class="active" onclick="showForm('customers')" id="btn-customers">I'm a Customer</button>
-              <button onclick="showForm('partners')" id="btn-partners">I'm a Partner</button>
+              <button
+                class="active"
+                onclick="showForm('customers')"
+                id="btn-customers"
+              >
+                I'm a Customer
+              </button>
+              <button onclick="showForm('partners')" id="btn-partners">
+                I'm a Partner
+              </button>
             </div>
-            <div class="kit-form-container" id="kit-form-container" style="min-height: 150px;">
-              <!-- Customer Form (Default visible) -->
+            <div
+              class="kit-form-container"
+              id="kit-form-container"
+              style="min-height: 200px"
+            >
+              <!-- Customer Form: Tally embed (default visible) -->
               <div class="kit-form-wrapper" id="kit-customers">
-                <script async data-uid="4081f41f6f" src="https://scrollbreak.kit.com/4081f41f6f/index.js"></script>
+                <iframe data-tally-src="https://tally.so/embed/RGZ1BJ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="157" frameborder="0" marginheight="0" marginwidth="0" title="null"></iframe>
+                <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
               </div>
-              <!-- Partner Form (Hidden by default) -->
-              <div class="kit-form-wrapper" id="kit-partners" style="display: none;">
-                <script async data-uid="df006f669c" src="https://scrollbreak.kit.com/df006f669c/index.js"></script>
+              <!-- Partner Form: Kit.com embed (hidden by default) -->
+              <div
+                class="kit-form-wrapper"
+                id="kit-partners"
+                style="display: none"
+              >
+                <div
+                  id="kit-partner-form"
+                  style="background: transparent"
+                ></div>
+                <script>
+                  (function () {
+                    var d = document,
+                      s = d.createElement("script");
+                    s.src = "https://scrollbreak.kit.com/df006f669c/index.js";
+                    s.async = true;
+                    s.onload = function () {
+                      // Kit.com will auto-inject the form into the page
+                    };
+                    d.body.appendChild(s);
+                  })();
+                </script>
               </div>
             </div>
           </div>
@@ -1275,12 +1488,27 @@
         });
       });
 
-      // Kit.com form toggle
+      // Form toggle — swaps form and heading/subtext
+      const ctaCopy = {
+        customers: {
+          heading: "Reclaim your time, starting today.",
+          subtext:
+            "Get early access to ScrollBreak. Be the first to track your focus streaks and unlock rewards for the time you save.",
+        },
+        partners: {
+          heading: "Partner with ScrollBreak.",
+          subtext:
+            "Offer rewards to mindful users and reach an engaged, health-conscious audience. Join our partner network.",
+        },
+      };
+
       function showForm(type) {
         const customersForm = document.getElementById("kit-customers");
         const partnersForm = document.getElementById("kit-partners");
         const btnCustomers = document.getElementById("btn-customers");
         const btnPartners = document.getElementById("btn-partners");
+        const heading = document.getElementById("cta-heading");
+        const subtext = document.getElementById("cta-subtext");
 
         if (type === "customers") {
           customersForm.style.display = "block";
@@ -1293,12 +1521,28 @@
           btnPartners.classList.add("active");
           btnCustomers.classList.remove("active");
         }
+
+        // Animate text swap
+        heading.style.opacity = "0";
+        subtext.style.opacity = "0";
+        setTimeout(() => {
+          heading.textContent = ctaCopy[type].heading;
+          subtext.textContent = ctaCopy[type].subtext;
+          heading.style.transition = "opacity 0.4s ease";
+          subtext.style.transition = "opacity 0.4s ease";
+          heading.style.opacity = "1";
+          subtext.style.opacity = "1";
+        }, 200);
       }
 
       // Form submission handler for custom forms
       function submitKitForm(type) {
-        const emailInput = document.getElementById(type === "customers" ? "customer-email" : "partner-email");
-        const messageDiv = document.getElementById(type === "customers" ? "customer-message" : "partner-message");
+        const emailInput = document.getElementById(
+          type === "customers" ? "customer-email" : "partner-email",
+        );
+        const messageDiv = document.getElementById(
+          type === "customers" ? "customer-message" : "partner-message",
+        );
         const email = emailInput.value;
 
         if (!email || !email.includes("@")) {
@@ -1315,7 +1559,8 @@
 
         // Simulate API call (replace with actual Kit.com API integration)
         setTimeout(() => {
-          messageDiv.style.color = type === "customers" ? "var(--primary)" : "var(--secondary)";
+          messageDiv.style.color =
+            type === "customers" ? "var(--primary)" : "var(--secondary)";
           messageDiv.innerHTML = `✓ Thanks! We'll be in touch at <strong>${email}</strong>`;
           emailInput.value = "";
 
@@ -1326,14 +1571,18 @@
       }
 
       // Allow Enter key to submit
-      document.querySelectorAll('#customer-email, #partner-email').forEach(input => {
-        input.addEventListener('keypress', function(e) {
-          if (e.key === 'Enter') {
-            const type = this.id.includes('customer') ? 'customers' : 'partners';
-            submitKitForm(type);
-          }
+      document
+        .querySelectorAll("#customer-email, #partner-email")
+        .forEach((input) => {
+          input.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+              const type = this.id.includes("customer")
+                ? "customers"
+                : "partners";
+              submitKitForm(type);
+            }
+          });
         });
-      });
 
       // Smooth scroll for anchor links
       document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -1345,7 +1594,8 @@
           if (targetElement) {
             const headerOffset = 80;
             const elementPosition = targetElement.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            const offsetPosition =
+              elementPosition + window.pageYOffset - headerOffset;
 
             window.scrollTo({
               top: offsetPosition,
@@ -1356,7 +1606,9 @@
             const anchorNavLinks = document.querySelector(".nav-links");
             if (anchorNavLinks.style.display === "flex") {
               anchorNavLinks.style.display = "none";
-              document.querySelector(".mobile-menu-btn .material-symbols-outlined").textContent = "menu";
+              document.querySelector(
+                ".mobile-menu-btn .material-symbols-outlined",
+              ).textContent = "menu";
             }
           }
         });
@@ -1380,7 +1632,8 @@
         }
 
         // Scroll progress bar
-        const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const windowHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
         const progress = (currentScroll / windowHeight) * 100;
         scrollProgress.style.width = progress + "%";
 
@@ -1425,7 +1678,9 @@
           mobileNavLinks.style.padding = "16px";
           mobileNavLinks.style.borderBottom = "1px solid rgba(65, 72, 70, 0.3)";
           mobileNavLinks.style.zIndex = "49";
-          mobileMenuBtn.querySelector(".material-symbols-outlined").textContent = isOpen ? "menu" : "close";
+          mobileMenuBtn.querySelector(
+            ".material-symbols-outlined",
+          ).textContent = isOpen ? "menu" : "close";
         });
       }
 
