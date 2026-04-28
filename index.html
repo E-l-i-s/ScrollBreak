@@ -753,26 +753,24 @@
         margin: 48px auto;
         max-width: 1100px;
         border-radius: 40px;
-        background: linear-gradient(
-          140deg,
-          rgba(0, 44, 39, 0.9),
-          rgba(12, 21, 20, 0.95)
-        );
+        background: #0f2422;
         border: 1px solid rgba(152, 209, 200, 0.3);
         box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
       }
 
-      .cta-section::after {
+      .cta-section::before {
         content: "";
         position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          circle at top,
-          rgba(152, 209, 200, 0.2),
-          transparent 60%
-        );
-        opacity: 0.8;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 12%;
         pointer-events: none;
+        background: linear-gradient(
+          90deg,
+          rgba(152, 209, 200, 0.18),
+          rgba(152, 209, 200, 0)
+        );
       }
 
       .cta-content {
@@ -842,10 +840,13 @@
 
       .kit-form-wrapper {
         background: transparent !important;
+        isolation: isolate;
       }
 
-      .kit-form-wrapper iframe {
+      .tally-embed-frame {
         display: block;
+        background: transparent;
+        mix-blend-mode: multiply;
       }
 
       /* Rewards Section */
@@ -1354,31 +1355,15 @@
             >
               <!-- Customer Form: Tally embed (default visible) -->
               <div class="kit-form-wrapper" id="kit-customers">
-                <iframe data-tally-src="https://tally.so/embed/RGZ1BJ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="157" frameborder="0" marginheight="0" marginwidth="0" title="null"></iframe>
-                <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+                <iframe class="tally-embed-frame" src="https://tally.so/embed/RGZ1BJ?alignLeft=1&hideTitle=1&dynamicHeight=1" loading="lazy" width="100%" height="157" frameborder="0" marginheight="0" marginwidth="0" title="null"></iframe>
               </div>
-              <!-- Partner Form: Kit.com embed (hidden by default) -->
+              <!-- Partner Form: Tally embed (hidden by default) -->
               <div
                 class="kit-form-wrapper"
                 id="kit-partners"
                 style="display: none"
               >
-                <div
-                  id="kit-partner-form"
-                  style="background: transparent"
-                ></div>
-                <script>
-                  (function () {
-                    var d = document,
-                      s = d.createElement("script");
-                    s.src = "https://scrollbreak.kit.com/df006f669c/index.js";
-                    s.async = true;
-                    s.onload = function () {
-                      // Kit.com will auto-inject the form into the page
-                    };
-                    d.body.appendChild(s);
-                  })();
-                </script>
+                <iframe class="tally-embed-frame" src="https://tally.so/embed/1Abzyg?alignLeft=1&hideTitle=1&dynamicHeight=1" loading="lazy" width="100%" height="157" frameborder="0" marginheight="0" marginwidth="0" title="null"></iframe>
               </div>
             </div>
           </div>
