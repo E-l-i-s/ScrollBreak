@@ -397,55 +397,130 @@
       .screen-stack {
         position: relative;
         width: min(440px, 90vw);
-        height: 540px;
+        height: 620px;
       }
 
-      .screen-stack img {
+      /* ═══ iPhone Mockup ═══ */
+      .phone-mockup {
         position: absolute;
-        border-radius: 32px;
-        box-shadow: 0 30px 60px var(--shadow);
-        border: 1px solid rgba(65, 72, 70, 0.4);
-        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        background: linear-gradient(160deg, #2e2e30 0%, #1a1a1c 100%);
+        border-radius: 44px;
+        padding: 14px 8px 10px;
+        box-shadow:
+          inset 0 0 0 1.5px rgba(255,255,255,0.12),
+          0 0 0 1px rgba(0,0,0,0.8),
+          0 40px 80px rgba(0,0,0,0.7);
+        /* z-index delays: instant on hover-in (0s), delayed on hover-out (0.5s) */
+        transition: transform 0.6s cubic-bezier(0.16,1,0.3,1),
+                    box-shadow 0.6s ease,
+                    z-index 0s 0.5s;
       }
 
-      .screen-stack img:hover {
-        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+      .phone-mockup:hover {
+        box-shadow:
+          inset 0 0 0 1.5px rgba(255,255,255,0.18),
+          0 0 0 1px rgba(0,0,0,0.8),
+          0 60px 100px rgba(0,0,0,0.8);
+        z-index: 10;
+        /* z-index jumps after 0.2s delay so the lift animation starts first */
+        transition: transform 0.6s cubic-bezier(0.16,1,0.3,1),
+                    box-shadow 0.6s ease,
+                    z-index 0s 0.2s;
       }
 
-      .screen-stack img.primary {
-        width: 76%;
+      /* Dynamic Island / notch */
+      .phone-mockup::before {
+        content: "";
+        position: absolute;
+        top: 14px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 78px;
+        height: 26px;
+        background: #111;
+        border-radius: 20px;
+        z-index: 10;
+      }
+
+      /* Volume buttons on left */
+      .phone-mockup::after {
+        content: "";
+        position: absolute;
+        left: -3px;
+        top: 22%;
+        width: 3px;
+        height: 30px;
+        background: #2e2e30;
+        border-radius: 2px 0 0 2px;
+        box-shadow: 0 46px 0 #2e2e30, 0 88px 0 #2e2e30;
+      }
+
+      .phone-screen {
+        border-radius: 36px;
+        overflow: hidden;
+        background: #0c1514;
+        /* Force realistic iPhone screen proportions — crops the tall screenshot */
+        aspect-ratio: 9 / 19.5;
+      }
+
+      .phone-screen img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        position: static;
+        border-radius: 0;
+        box-shadow: none;
+        border: none;
+        transition: none;
+      }
+
+      .phone-home {
+        position: absolute;
+        bottom: 6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 34%;
+        height: 4px;
+        background: rgba(255,255,255,0.25);
+        border-radius: 3px;
+      }
+
+      .phone-mockup.primary-phone {
+        width: 72%;
         left: 0;
         top: 40px;
         transform: rotate(-4deg);
         z-index: 1;
       }
 
-      .screen-stack img.primary:hover {
-        transform: rotate(-4deg) translateY(-8px);
+      .phone-mockup.primary-phone:hover {
+        transform: rotate(-4deg) translateY(-12px) scale(1.02);
       }
 
-      .screen-stack img.secondary {
-        width: 72%;
+      .phone-mockup.secondary-phone {
+        width: 68%;
         right: 0;
         top: 0;
         transform: rotate(4deg);
         z-index: 2;
       }
 
-      .screen-stack img.secondary:hover {
-        transform: rotate(4deg) translateY(-8px);
+      .phone-mockup.secondary-phone:hover {
+        transform: rotate(4deg) translateY(-12px) scale(1.02);
       }
 
-      .screen-stack img.tertiary {
-        width: 66%;
-        right: 12%;
+      .phone-mockup.tertiary-phone {
+        width: 62%;
+        right: 10%;
         bottom: 0;
         transform: rotate(-1deg);
         z-index: 0;
       }
 
-      .screen-stack img.tertiary:hover {
-        transform: rotate(-1deg) translateY(-8px);
+      .phone-mockup.tertiary-phone:hover {
+        transform: rotate(-1deg) translateY(-12px) scale(1.02);
       }
 
       /* Sections */
@@ -478,17 +553,17 @@
         font-size: 16px;
       }
 
-      /* Feature Grid */
-      .feature-grid {
+      /* Steps Grid */
+      .steps-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 24px;
       }
 
-      .feature-card {
+      .step-card {
         background: rgba(24, 33, 32, 0.78);
         border-radius: var(--radius-lg);
-        padding: 28px;
+        padding: 32px 28px;
         border: 1px solid rgba(65, 72, 70, 0.5);
         backdrop-filter: blur(16px);
         transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
@@ -496,29 +571,34 @@
         overflow: hidden;
       }
 
-      .feature-card::before {
+      .step-card::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
+        top: 0; left: 0; right: 0;
         height: 3px;
         background: linear-gradient(90deg, var(--primary), var(--secondary));
         opacity: 0;
         transition: opacity 0.35s ease;
       }
 
-      .feature-card:hover {
+      .step-card:hover {
         transform: translateY(-8px);
         border-color: rgba(152, 209, 200, 0.5);
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
       }
 
-      .feature-card:hover::before {
-        opacity: 1;
+      .step-card:hover::before { opacity: 1; }
+
+      .step-number {
+        font-size: 52px;
+        font-weight: 800;
+        color: rgba(152, 209, 200, 0.1);
+        letter-spacing: -0.04em;
+        line-height: 1;
+        margin-bottom: -4px;
       }
 
-      .feature-card .icon {
+      .step-card .icon {
         font-size: 32px;
         color: var(--primary);
         margin-bottom: 16px;
@@ -526,21 +606,19 @@
         transition: transform 0.35s ease;
       }
 
-      .feature-card:hover .icon {
-        transform: scale(1.1);
-      }
+      .step-card:hover .icon { transform: scale(1.1); }
 
-      .feature-card h3 {
+      .step-card h3 {
         margin: 0 0 10px;
-        font-size: 18px;
+        font-size: 20px;
         font-weight: 700;
       }
 
-      .feature-card p {
+      .step-card p {
         margin: 0;
         color: var(--on-surface-variant);
-        line-height: 1.6;
-        font-size: 14px;
+        line-height: 1.65;
+        font-size: 15px;
       }
 
       /* Highlight Section */
@@ -594,9 +672,7 @@
         width: 100%;
       }
 
-      .screen-stack img:hover {
-        z-index: 10 !important;
-      }
+      /* z-index for phone hover handled via transition-delay on .phone-mockup */
 
       .highlight-screen:hover {
         transform: scale(1.02);
@@ -821,7 +897,11 @@
         }
 
         .screen-stack {
-          height: 400px;
+          height: 460px;
+        }
+
+        .steps-grid {
+          grid-template-columns: 1fr;
         }
 
         .btn {
@@ -853,7 +933,7 @@
           font-size: 2.2rem;
         }
 
-        .feature-grid {
+        .steps-grid {
           grid-template-columns: 1fr;
         }
       }
@@ -918,10 +998,6 @@
       <!-- Hero Section -->
       <section class="hero" id="hero">
         <div class="hero-content reveal">
-          <span class="pill">
-            <span class="material-symbols-outlined" style="font-size: 16px">spa</span>
-            Digital Sanctuary
-          </span>
           <h1>
             Transform scrolling<br />
             <span>into progress.</span>
@@ -955,43 +1031,56 @@
 
         <div class="hero-visual reveal" data-delay="150">
           <div class="screen-stack">
-            <img class="primary" src="stitch_scrollbreak_mindful_momentum_rewarder/onboarding_login/screen.png" alt="ScrollBreak onboarding screen" />
-            <img class="secondary" src="stitch_scrollbreak_mindful_momentum_rewarder/dashboard/screen.png" alt="ScrollBreak dashboard screen" />
-            <img class="tertiary" src="stitch_scrollbreak_mindful_momentum_rewarder/rewards_marketplace/screen.png" alt="ScrollBreak rewards marketplace screen" />
+            <div class="phone-mockup primary-phone">
+              <div class="phone-screen">
+                <img src="stitch_scrollbreak_mindful_momentum_rewarder/onboarding_login/screen.png" alt="ScrollBreak onboarding screen" />
+              </div>
+              <div class="phone-home"></div>
+            </div>
+            <div class="phone-mockup secondary-phone">
+              <div class="phone-screen">
+                <img src="stitch_scrollbreak_mindful_momentum_rewarder/dashboard/screen.png" alt="ScrollBreak dashboard screen" />
+              </div>
+              <div class="phone-home"></div>
+            </div>
+            <div class="phone-mockup tertiary-phone">
+              <div class="phone-screen">
+                <img src="stitch_scrollbreak_mindful_momentum_rewarder/rewards_marketplace/screen.png" alt="ScrollBreak rewards marketplace screen" />
+              </div>
+              <div class="phone-home"></div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- Features Section -->
+      <!-- How It Works Section -->
       <section class="section" id="features">
         <div class="section-title reveal">
           <div>
-            <h2>Focus flow, designed for calm.</h2>
+            <h2>The Anti-Scroll Loop</h2>
             <p>
-              Every interaction mirrors the app's tactile, glassy UI: soft gradients, bold metrics, and deep contrast that keeps you grounded.
+              We don't just block apps. We provide a compelling, rewarding alternative to the dopamine feed.
             </p>
           </div>
         </div>
-        <div class="feature-grid">
-          <div class="feature-card reveal">
-            <span class="material-symbols-outlined icon">timer</span>
-            <h3>Focus Flow</h3>
-            <p>Replace endless scrolling with a guided breath and a learning ritual.</p>
+        <div class="steps-grid">
+          <div class="step-card reveal">
+            <div class="step-number">01</div>
+            <span class="material-symbols-outlined icon">psychology</span>
+            <h3>Recognize &amp; Redirect</h3>
+            <p>When the urge to scroll hits, open ScrollBreak instead. Break the automatic reflex.</p>
           </div>
-          <div class="feature-card reveal" data-delay="80">
-            <span class="material-symbols-outlined icon">auto_graph</span>
-            <h3>Visual Growth</h3>
-            <p>Watch your momentum garden bloom with each reclaimed minute.</p>
+          <div class="step-card reveal" data-delay="80">
+            <div class="step-number">02</div>
+            <span class="material-symbols-outlined icon">fitness_center</span>
+            <h3>Log Real Activity</h3>
+            <p>Choose to read, exercise, or create. Start a session and focus on the physical world.</p>
           </div>
-          <div class="feature-card reveal" data-delay="140">
-            <span class="material-symbols-outlined icon">local_fire_department</span>
-            <h3>Streak Energy</h3>
-            <p>Celebrate streaks with soft glow highlights and milestone insights.</p>
-          </div>
-          <div class="feature-card reveal" data-delay="200">
+          <div class="step-card reveal" data-delay="160">
+            <div class="step-number">03</div>
             <span class="material-symbols-outlined icon">stars</span>
-            <h3>Rewarded Progress</h3>
-            <p>Convert saved time into BreakPoints for curated digital and real-world perks.</p>
+            <h3>Earn &amp; Redeem</h3>
+            <p>Get points based on duration. Build your streak and unlock partner rewards.</p>
           </div>
         </div>
       </section>
@@ -1014,8 +1103,15 @@
             </a>
           </div>
         </div>
-        <div class="highlight-screen reveal" data-delay="120">
-          <img src="stitch_scrollbreak_mindful_momentum_rewarder/profile_insights_2/screen.png" alt="Profile insights screen" style="max-height: 420px; object-fit: contain;" />
+        <div class="reveal" data-delay="120" style="display: flex; justify-content: center; align-items: flex-start;">
+          <!-- Reuse the same phone-mockup class but override position to relative -->
+          <div class="phone-mockup" style="position: relative; width: min(260px, 50vw);">
+            <div class="phone-screen">
+              <img src="stitch_scrollbreak_mindful_momentum_rewarder/profile_insights_2/screen.png"
+                   alt="Profile insights screen" />
+            </div>
+            <div class="phone-home"></div>
+          </div>
         </div>
       </section>
 
