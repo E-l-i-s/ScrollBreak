@@ -1380,55 +1380,7 @@
           scroll-behavior: auto;
         }
       }
-
-      /* Smooth Tally popup animations */
-      @keyframes tallyPopupFadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.95);
-        }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      @keyframes tallyOverlayFadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-
-      /* Target Tally popup modal */
-      iframe[src*="tally.so"][style*="position"] {
-        animation: tallyPopupFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-      }
-
-      /* Target Tally overlay backdrop */
-      div[style*="position: fixed"][style*="z-index"] {
-        animation: tallyOverlayFadeIn 0.3s ease-out !important;
-      }
     </style>
-
-    <!-- Tally Form Popup Configuration -->
-    <script>
-      window.TallyConfig = {
-        formId: "ob0JRx",
-        popup: {
-          open: {
-            trigger: "scroll",
-            scrollPercent: 60,
-          },
-          layout: "modal",
-          doNotShowAfterSubmit: true,
-          autoClose: 5000,
-        },
-      };
-    </script>
-    <script async src="https://tally.so/widgets/embed.js"></script>
   </head>
   <body>
     <!-- Ambient Background -->
@@ -1721,7 +1673,11 @@
                   role="tablist"
                   aria-label="Activity range"
                 >
-                  <button type="button" class="insights-btn" data-range="today">
+                  <button
+                    type="button"
+                    class="insights-btn"
+                    data-range="today"
+                  >
                     Today
                   </button>
                   <button
@@ -1731,7 +1687,11 @@
                   >
                     Week
                   </button>
-                  <button type="button" class="insights-btn" data-range="month">
+                  <button
+                    type="button"
+                    class="insights-btn"
+                    data-range="month"
+                  >
                     Month
                   </button>
                 </div>
@@ -1760,11 +1720,7 @@
                 </span>
                 <span class="chart-legend" id="activity-legend"></span>
               </div>
-              <div
-                class="chart-tooltip"
-                id="activity-tooltip"
-                aria-hidden="true"
-              ></div>
+              <div class="chart-tooltip" id="activity-tooltip" aria-hidden="true"></div>
               <div
                 class="focus-chart"
                 id="activity-chart"
@@ -1992,12 +1948,8 @@
 
       const activityButtons = document.querySelectorAll(".insights-btn");
       const activityChart = document.getElementById("activity-chart");
-      const activityRangeLabel = document.getElementById(
-        "activity-range-label",
-      );
-      const activityRangeTotal = document.getElementById(
-        "activity-range-total",
-      );
+      const activityRangeLabel = document.getElementById("activity-range-label");
+      const activityRangeTotal = document.getElementById("activity-range-total");
       const activityLegend = document.getElementById("activity-legend");
       const insightFocus = document.getElementById("insight-focus");
       const insightTime = document.getElementById("insight-time");
@@ -2025,8 +1977,10 @@
         const height = 100 - paddingY * 2;
         const count = values.length;
         return values.map((value, index) => {
-          const x = count === 1 ? 50 : paddingX + (width * index) / (count - 1);
-          const y = 100 - paddingY - (value / maxValue) * height;
+          const x =
+            count === 1 ? 50 : paddingX + (width * index) / (count - 1);
+          const y =
+            100 - paddingY - (value / maxValue) * height;
           return {
             x: Number(x.toFixed(2)),
             y: Number(y.toFixed(2)),
@@ -2088,7 +2042,11 @@
       function renderActivityRange(rangeKey) {
         const range = activityRanges[rangeKey];
         if (!range || !activityChart) return;
-        const maxValue = Math.max(...range.series, ...range.compare, 1);
+        const maxValue = Math.max(
+          ...range.series,
+          ...range.compare,
+          1,
+        );
         const seriesPoints = buildLinePoints(range.series, maxValue);
         const comparePoints = buildLinePoints(range.compare, maxValue);
         const { ticks, lines } = buildGridLines(maxValue);
@@ -2102,9 +2060,7 @@
         activityChart.innerHTML = `
           <div class="chart-y-axis">
             ${ticks
-              .map(
-                (tick) => `<span>${formatTickValue(tick, range.unit)}</span>`,
-              )
+              .map((tick) => `<span>${formatTickValue(tick, range.unit)}</span>`)
               .join("")}
           </div>
           <div class="chart-plot">
@@ -2161,8 +2117,7 @@
 
         if (activityRangeLabel) activityRangeLabel.textContent = range.label;
         if (activityRangeTotal) activityRangeTotal.textContent = range.total;
-        if (activityLegend)
-          activityLegend.textContent = `vs ${range.compareLabel}`;
+        if (activityLegend) activityLegend.textContent = `vs ${range.compareLabel}`;
         if (insightFocus) insightFocus.textContent = range.focus;
         if (insightTime) insightTime.textContent = range.time;
         activityButtons.forEach((btn) => {
