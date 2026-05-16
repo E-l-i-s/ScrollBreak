@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+    <defs>
+        <style>
+            /* Main drawing animation for the teal path */
+            .r-path {
+                fill: none;
+                stroke: #98C9C0;
+                stroke-width: 28;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                stroke-dasharray: 1000;
+                stroke-dashoffset: 1000;
+                animation: drawPath 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            }
+            
+            /* Pop-in animation for the mid-point intersection joint */
+            .r-joint {
+                fill: #98C9C0;
+                opacity: 0;
+                transform: scale(0);
+                transform-origin: 130px 255px;
+                animation: popElement 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s forwards;
+            }
+
+            /* Synchronized pop-in animation for the cutout hole */
+            .r-cutout {
+                fill: black;
+                opacity: 0;
+                transform: scale(0);
+                transform-origin: 130px 255px;
+                animation: popElement 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s forwards;
+            }
+            
+            /* Pop-in animation for the orange terminal dot */
+            .r-dot {
+                fill: #FFA800;
+                opacity: 0;
+                transform: scale(0);
+                transform-origin: 290px 335px;
+                animation: popElement 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.25s forwards;
+            }
+
+            @keyframes drawPath {
+                0% { stroke-dashoffset: 1000; }
+                100% { stroke-dashoffset: 0; }
+            }
+            
+            @keyframes popElement {
+                0% { opacity: 0; transform: scale(0); }
+                100% { opacity: 1; transform: scale(1); }
+            }
+        </style>
+        
+        <mask id="joint-cutout">
+            <rect width="100%" height="100%" fill="white" />
+            <circle class="r-cutout" cx="130" cy="255" r="11" />
+        </mask>
+    </defs>
+    
+    <g mask="url(#joint-cutout)">
+        <path class="r-path" d="M 130 320 L 130 80 C 130 80, 290 80, 290 167.5 C 290 255, 145 255, 130 255 L 290 335" />
+        
+        <circle class="r-joint" cx="130" cy="255" r="23" />
+    </g>
+
+    <circle class="r-dot" cx="290" cy="335" r="28" />
+</svg>

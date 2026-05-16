@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>ScrollBreak — Transform Scrolling into Progress</title>
+    <title>ReWired — Transform Scrolling into Progress</title>
     <meta
       name="description"
       content="Break the infinite scroll. Reclaim 2.5 hours daily by replacing passive consumption with mindful growth. Earn rewards for focus."
@@ -68,6 +68,28 @@
         min-height: 100vh;
         overflow-x: hidden;
         line-height: 1.6;
+      }
+
+      #loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #104E47;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
+
+      #loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      #loader img {
+        width: clamp(180px, 50vw, 320px);
+        height: auto;
       }
 
       a {
@@ -199,16 +221,17 @@
         font-weight: 800;
         font-size: 1.25rem;
         letter-spacing: -0.02em;
-        color: var(--primary);
       }
 
-      .brand .icon {
-        font-size: 26px;
+      .header-logo {
+        height: 32px;
+        width: auto;
+        border-radius: 4px;
         transition: transform 0.3s ease;
       }
 
-      .brand:hover .icon {
-        transform: rotate(15deg) scale(1.1);
+      .brand:hover .header-logo {
+        transform: rotate(5deg) scale(1.05);
       }
 
       .nav-links {
@@ -518,9 +541,10 @@
       .phone-screen img {
         display: block;
         width: 100%;
-        height: 100%;
+        height: calc(100% + 80px);
         object-fit: cover;
-        object-position: top;
+        object-position: center top;
+        margin-top: -80px;
         position: static;
         border-radius: 0;
         box-shadow: none;
@@ -1383,6 +1407,10 @@
     </style>
   </head>
   <body>
+    <!-- Full-Screen Loading Overlay -->
+    <div id="loader">
+      <img src="../logo/animatedlogo.svg" alt="ReWired" />
+    </div>
     <!-- Ambient Background -->
     <div class="ambient">
       <div class="blob primary"></div>
@@ -1447,8 +1475,8 @@
     <header class="site-header" id="header">
       <nav class="nav">
         <a href="#hero" class="brand">
-          <span class="material-symbols-outlined icon">spa</span>
-          ScrollBreak
+          <img src="../logo/rewired-logo - Copy.jpg" alt="ReWired" class="header-logo" />
+          <span><span style="color:#ffffff">Re</span><span style="color:#498179">Wired</span></span>
         </a>
         <nav class="nav-links">
           <a href="#features">How it works</a>
@@ -1468,24 +1496,22 @@
       <section class="hero" id="hero">
         <div class="hero-content reveal">
           <h1>
-            Transform scrolling<br />
-            <span>into progress.</span>
+            your brain has been <span style="color: var(--primary); font-style: italic;">hijacked</span>.
           </h1>
           <p>
-            ScrollBreak turns mindless feeds into mindful momentum. Track
-            reclaimed time, grow your focus streaks, and unlock real-world
-            rewards for the hours you save.
+            Somewhere along the way, your phone stopped being a tool and started
+            being the thing that uses you. ReWired is how you take it back.
           </p>
           <div class="hero-actions">
             <a href="#subscribe" class="btn primary">
-              Start your reset
+              I'm ready
               <span class="material-symbols-outlined">arrow_forward</span>
             </a>
-            <a href="#features" class="btn ghost">See the flow</a>
+            <a href="#features" class="btn ghost">see how it works</a>
           </div>
           <div class="hero-stats">
             <div class="stat-card">
-              <div class="label">Time saved</div>
+              <div class="label">reclaimed</div>
               <div class="value" data-counter="75" data-suffix="m">0</div>
               <div
                 style="
@@ -1498,13 +1524,13 @@
               </div>
             </div>
             <div class="stat-card">
-              <div class="label">Momentum</div>
-              <div class="value" data-counter="12" data-suffix="-day streak">
+              <div class="label">streak</div>
+              <div class="value" data-counter="12" data-suffix=" days strong">
                 0
               </div>
             </div>
             <div class="stat-card">
-              <div class="label">BreakPoints</div>
+              <div class="label">vault points</div>
               <div class="value" data-counter="2450" data-suffix="">0</div>
             </div>
           </div>
@@ -1516,7 +1542,7 @@
               <div class="phone-screen">
                 <img
                   src="stitch_scrollbreak_mindful_momentum_rewarder/onboarding_login/screen.png"
-                  alt="ScrollBreak onboarding screen"
+                  alt="ReWired onboarding screen"
                 />
               </div>
               <div class="phone-home"></div>
@@ -1525,7 +1551,7 @@
               <div class="phone-screen">
                 <img
                   src="stitch_scrollbreak_mindful_momentum_rewarder/dashboard/screen.png"
-                  alt="ScrollBreak dashboard screen"
+                  alt="ReWired dashboard screen"
                 />
               </div>
               <div class="phone-home"></div>
@@ -1534,7 +1560,7 @@
               <div class="phone-screen">
                 <img
                   src="stitch_scrollbreak_mindful_momentum_rewarder/rewards_marketplace/screen.png"
-                  alt="ScrollBreak rewards marketplace screen"
+                  alt="ReWired rewards marketplace screen"
                 />
               </div>
               <div class="phone-home"></div>
@@ -1547,36 +1573,35 @@
       <section class="section" id="features">
         <div class="section-title reveal">
           <div>
-            <h2>The Anti-Scroll Loop</h2>
+            <h2>it really is that damn phone.</h2>
             <p>
-              We don't just block apps. We provide a compelling, rewarding
-              alternative to the dopamine feed.
+              so we built something that actually fights back.
             </p>
           </div>
         </div>
         <div class="steps-grid">
           <div class="step-card reveal">
             <span class="material-symbols-outlined icon">psychology</span>
-            <h3>1. Recognize &amp; Redirect</h3>
+            <h3>Feeling the urge to scroll? We fight it.</h3>
             <p>
-              When the urge to scroll hits, open ScrollBreak instead. Break the
-              automatic reflex.
+              You know the moment. Your brain is bored, anxious, avoiding something.
+              Instead of defaulting to the feed, We ReWire it.
             </p>
           </div>
           <div class="step-card reveal" data-delay="80">
             <span class="material-symbols-outlined icon">fitness_center</span>
-            <h3>2. Log Real Activity</h3>
+            <h3>do an actual thing.</h3>
             <p>
-              Choose to read, exercise, or create. Start a session and focus on
-              the physical world.
+              Read. Move. Go outside. Create something. Log it in 10 seconds.
+              Points land instantly.
             </p>
           </div>
           <div class="step-card reveal" data-delay="160">
             <span class="material-symbols-outlined icon">stars</span>
-            <h3>3. Earn &amp; Redeem</h3>
+            <h3>get rewarded for being present.</h3>
             <p>
-              Get points based on duration. Build your streak and unlock partner
-              rewards.
+              Points unlock real rewards: food, music, gear. The more you do,
+              the more The Vault opens up.
             </p>
           </div>
         </div>
@@ -1586,22 +1611,18 @@
       <section class="section metrics-board" id="insights">
         <div class="section-title reveal">
           <div>
-            <h2>Engineered for Focus</h2>
-            <p>
-              Scientifically backed tools to help you reclaim your cognitive
-              space.
-            </p>
+            <h2>built different.</h2>
           </div>
         </div>
         <div class="insight-grid">
           <article class="insight-card logging-card reveal">
             <div class="card-header">
               <div>
-                <h3>Mindful Activity Logging</h3>
+                <h3>I did a thing.</h3>
                 <p>
-                  Swap scrolling for reading, learning, or exercise. ScrollBreak
-                  detects infinite scroll behavior and suggests healthier
-                  alternatives tailored to your goals.
+                  10 seconds to log. Pick your activity, set your time, done.
+                  ReWired tracks what you did instead of scrolling: and rewards
+                  every single one.
                 </p>
               </div>
               <span class="material-symbols-outlined icon">psychology</span>
@@ -1648,10 +1669,11 @@
             <div class="earn-icon">
               <span class="material-symbols-outlined">diamond</span>
             </div>
-            <h3>Earn Rewards</h3>
+            <h3>The Vault.</h3>
             <p>
-              Turn focus gains into real-world rewards. Every minute of focus is
-              currency for growth.
+              Your points go somewhere real. Food, music, gaming, experiences:
+              unlocked by actually living your life instead of watching other
+              people live theirs.
             </p>
             <div class="milestone">
               <div class="milestone-header">
@@ -1667,17 +1689,13 @@
           <article class="insight-card insights-card reveal" data-delay="90">
             <div class="insights-copy">
               <div class="insights-header">
-                <h3>Deep Insights</h3>
+                <h3>your receipt.</h3>
                 <div
                   class="insights-controls"
                   role="tablist"
                   aria-label="Activity range"
                 >
-                  <button
-                    type="button"
-                    class="insights-btn"
-                    data-range="today"
-                  >
+                  <button type="button" class="insights-btn" data-range="today">
                     Today
                   </button>
                   <button
@@ -1687,14 +1705,26 @@
                   >
                     Week
                   </button>
-                  <button
-                    type="button"
-                    class="insights-btn"
-                    data-range="month"
-                  >
+                  <button type="button" class="insights-btn" data-range="month">
                     Month
                   </button>
                 </div>
+              </div>
+              <p>
+                Every week ReWired generates your personal stat card. Hours
+                reclaimed. Streak count. Top activities. Designed to screenshot.
+                Built to share.
+              </p>
+              <div class="insight-stats">
+                <div class="insight-stat">
+                  <div class="stat-value" id="insight-focus">82%</div>
+                  <div class="stat-label">less screen time</div>
+                </div>
+                <div class="insight-stat">
+                  <div class="stat-value" id="insight-time">6.2h</div>
+                  <div class="stat-label">time yours again</div>
+                </div>
+              </div>
               </div>
               <p>
                 Visualize your growth with advanced analytics. See exactly how
@@ -1735,10 +1765,9 @@
       <section class="cta-section" id="subscribe">
         <div class="cta-content">
           <div class="cta-text reveal">
-            <h2 id="cta-heading">Ready to reclaim your time?</h2>
+            <h2 id="cta-heading">rewire starts now.</h2>
             <p id="cta-subtext">
-              Join thousands of others who have turned their scrolling habits
-              into a tool for personal growth.
+              You already know it's that damn phone. Here's what you do about it.
             </p>
           </div>
           <div class="cta-form reveal" data-delay="100">
@@ -1792,6 +1821,7 @@
                 ></iframe>
               </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -1802,9 +1832,9 @@
       <div class="footer-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Service</a>
-        <a href="#">Contact</a>
+        <a href="mailto:rewiredxapp@gmail.com">rewiredxapp@gmail.com</a>
       </div>
-      <p>ScrollBreak © 2026 — Digital sanctuary for mindful momentum.</p>
+      <p>ReWired © 2026 — rewire yourself. the phone can wait.</p>
     </footer>
 
     <!-- Scripts -->
@@ -1834,6 +1864,13 @@
         };
         render();
       }
+
+      // Hide loader after page load
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document.getElementById("loader").classList.add("hidden");
+        }, 800);
+      });
 
       // Animated counter for stats
       function animateCounter(el, target, suffix = "") {
@@ -1915,31 +1952,31 @@
           time: "1.8h",
           color: "#98d1c8",
           unit: "min",
-          compareLabel: "Yesterday",
+          compareLabel: "yesterday",
           labels: ["8 AM", "10 AM", "12 PM", "2 PM", "4 PM", "6 PM"],
           series: [10, 18, 26, 20, 18, 16],
           compare: [8, 16, 22, 18, 14, 12],
         },
         week: {
-          label: "This Week",
+          label: "this week",
           total: "16.4 hrs focused",
           focus: "82%",
           time: "6.2h",
           color: "#98d1c8",
           unit: "h",
-          compareLabel: "Last Week",
+          compareLabel: "last week",
           labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
           series: [2.1, 2.4, 2.8, 2.5, 2.9, 2.2, 1.5],
           compare: [1.8, 2.0, 2.4, 2.1, 2.6, 2.0, 1.2],
         },
         month: {
-          label: "This Month",
+          label: "this month",
           total: "64.8 hrs focused",
           focus: "89%",
           time: "28.6h",
           color: "#98d1c8",
           unit: "h",
-          compareLabel: "Last Month",
+          compareLabel: "last month",
           labels: ["W1", "W2", "W3", "W4", "W5"],
           series: [12.4, 13.8, 14.6, 11.9, 12.1],
           compare: [10.8, 12.4, 13.1, 10.7, 11.5],
@@ -2151,12 +2188,12 @@
       // Form toggle — swaps form and heading/subtext
       const ctaCopy = {
         customers: {
-          heading: "Ready to reclaim your time?",
+          heading: "rewire starts now.",
           subtext:
-            "Join thousands of others who have turned their scrolling habits into a tool for personal growth.",
+            "You already know it's that damn phone. Here's what you do about it.",
         },
         partners: {
-          heading: "Partner with ScrollBreak.",
+          heading: "Partner with ReWired.",
           subtext:
             "Offer rewards to mindful users and reach an engaged, health-conscious audience. Join our partner network.",
         },

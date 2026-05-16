@@ -1,4 +1,4 @@
-MVP Product Prompt: ScrollBreak
+MVP Product Prompt: ReWired
 Problem Statement
 Users struggle with uncontrolled short-form media consumption. What begins as a few minutes of scrolling often extends into hours of lost time, driven by anxiety, loneliness, boredom, fear of missing out, and procrastination. Modern social media is engineered to capture and extend attention, leading to degraded focus, reduced productivity, and diminished well-being.
 Vision

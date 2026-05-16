@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <rect width="512" height="512" rx="112" fill="#141d1c"/>
+  <g transform="translate(256,256)">
+    <!-- Vertical stem of R -->
+    <line x1="-72" y1="-140" x2="-72" y2="140"
+          stroke="#98d1c8" stroke-width="28" stroke-linecap="round"/>
+    <!-- Top arch of R -->
+    <path d="M -72 -140 C -72 -140 80 -140 80 -44 C 80 52 -72 52 -72 52"
+          fill="none" stroke="#98d1c8" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Leg of R — diagonal to bottom right -->
+    <line x1="-72" y1="52" x2="88" y2="148"
+          stroke="#98d1c8" stroke-width="28" stroke-linecap="round"/>
+    <!-- Junction node (circle cutout at R belly) -->
+    <circle cx="-72" cy="52" r="18" fill="#141d1c" stroke="#98d1c8" stroke-width="12"/>
+    <!-- Amber spark dot at end of leg -->
+    <circle cx="88" cy="148" r="26" fill="#FFB100"/>
+  </g>
+</svg>
