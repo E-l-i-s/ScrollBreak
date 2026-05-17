@@ -220,6 +220,28 @@
         text-decoration: none;
       }
 
+      #loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: #104E47;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
+
+      #loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      #loader img {
+        width: clamp(180px, 50vw, 320px);
+        height: auto;
+      }
+
       img {
         max-width: 100%;
         display: block;
@@ -1600,6 +1622,10 @@ window.TallyConfig = {
 <script async src="https://tally.so/widgets/embed.js"></script>
   </head>
   <body>
+    <!-- Loading Overlay -->
+    <div id="loader">
+      <img src="logo/animatedlogo.svg" alt="ReWired" />
+    </div>
     <!-- Ambient Background -->
     <div class="ambient">
       <div class="blob primary"></div>
@@ -2057,6 +2083,13 @@ window.TallyConfig = {
 
     <!-- Scripts -->
     <script>
+      // Hide loader after animation completes
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          document.getElementById("loader").classList.add("hidden");
+        }, 2200);
+      });
+
       // Smooth cursor glow effect (desktop only)
       const cursor = document.getElementById("cursor");
       const prefersFinePointer = window.matchMedia("(pointer: fine)").matches;

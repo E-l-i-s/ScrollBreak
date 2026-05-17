@@ -57,6 +57,7 @@
       "permanent": true
     }
   ],
+  "outputDirectory": "public",
   "trailingSlash": false,
   "cleanUrls": true
 }
