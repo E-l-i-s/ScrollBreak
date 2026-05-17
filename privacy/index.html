@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy — ReWired</title>
+    <meta name="description" content="ReWired Privacy Policy. Learn how we collect, use, and protect your personal data." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://rewiredxapp.vercel.app/privacy" />
+    <link rel="icon" type="image/jpeg" href="/logo/rewired-logo.jpeg" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --background: #0c1514;
+        --surface: #182120;
+        --surface-low: #141d1c;
+        --surface-high: #232c2b;
+        --surface-highest: #2d3735;
+        --surface-bright: #323b3a;
+        --surface-lowest: #07100f;
+        --on-surface: #dbe5e2;
+        --on-surface-variant: #c1c8c5;
+        --outline-variant: #414846;
+        --outline: #8b9290;
+        --primary: #98d1c8;
+        --primary-container: #002c27;
+        --primary-fixed: #b4eee4;
+        --on-primary: #003732;
+        --inverse-primary: #2f6760;
+        --secondary: #ffd79b;
+        --secondary-container: #ffb211;
+        --secondary-fixed: #ffdeae;
+        --glow: rgba(152, 209, 200, 0.25);
+        --shadow: rgba(0, 0, 0, 0.45);
+        --radius-lg: 20px;
+        --radius-md: 16px;
+        --radius-pill: 999px;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: "Manrope", sans-serif;
+        background: var(--background);
+        color: var(--on-surface);
+        min-height: 100vh;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      a, a:visited { color: inherit; text-decoration: none; }
+
+      .site-header {
+        position: sticky; top: 0; z-index: 50;
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        background: rgba(12, 21, 20, 0.75);
+        border-bottom: 1px solid rgba(65, 72, 70, 0.3);
+      }
+
+      .nav {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 16px 32px; max-width: 1200px; margin: 0 auto;
+      }
+
+      .brand {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em;
+      }
+
+      .header-logo { height: 32px; width: auto; border-radius: 4px; }
+
+      .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--on-surface-variant); font-weight: 500; }
+
+      .nav-links a,
+      .nav-links a:visited { position: relative; transition: color 0.3s ease; padding: 4px 0; color: var(--on-surface-variant); }
+
+      .nav-links a:hover { color: var(--primary); }
+
+      .mobile-menu-btn { display: none; background: none; border: none; color: var(--on-surface); cursor: pointer; padding: 4px; }
+
+      .legal-content {
+        max-width: 800px; margin: 0 auto; padding: 80px 32px;
+      }
+
+      .legal-content h1 {
+        font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+        letter-spacing: -0.02em; margin-bottom: 8px;
+      }
+
+      .legal-content .meta {
+        color: var(--outline); font-size: 14px; margin-bottom: 40px;
+        padding-bottom: 24px; border-bottom: 1px solid rgba(65, 72, 70, 0.3);
+      }
+
+      .legal-content .short {
+        background: var(--surface-low); border: 1px solid rgba(152, 209, 200, 0.2);
+        border-radius: var(--radius-md); padding: 20px 24px; margin-bottom: 40px;
+        color: var(--primary); font-weight: 500; line-height: 1.7;
+      }
+
+      .legal-content h2 {
+        font-size: 1.3rem; font-weight: 700; margin: 40px 0 16px;
+        color: var(--primary);
+      }
+
+      .legal-content p { color: var(--on-surface-variant); margin-bottom: 16px; line-height: 1.7; }
+
+      .legal-content ul { list-style: none; padding: 0; margin: 0 0 16px; }
+      .legal-content ul li {
+        color: var(--on-surface-variant); padding: 8px 0 8px 24px;
+        position: relative; line-height: 1.6;
+      }
+      .legal-content ul li::before {
+        content: "•"; color: var(--primary); position: absolute; left: 0;
+      }
+
+      .legal-content table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+      .legal-content th, .legal-content td {
+        text-align: left; padding: 12px 16px; border-bottom: 1px solid rgba(65, 72, 70, 0.3);
+        color: var(--on-surface-variant); vertical-align: top;
+      }
+      .legal-content th { color: var(--primary); font-weight: 600; background: rgba(0, 44, 39, 0.3); }
+
+      .footer {
+        padding: 48px 32px; text-align: center; color: var(--outline);
+        font-size: 13px; border-top: 1px solid rgba(65, 72, 70, 0.3); margin-top: 48px;
+      }
+
+      .footer a, .footer a:visited { color: var(--on-surface-variant); transition: color 0.3s ease; }
+      .footer a:hover { color: var(--primary); }
+
+      .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; }
+
+      @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .mobile-menu-btn { display: block; }
+        .legal-content { padding: 48px 20px; }
+        .legal-content table { font-size: 12px; }
+        .legal-content th, .legal-content td { padding: 8px 10px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" id="header">
+      <nav class="nav">
+        <a href="/" class="brand">
+          <img src="/logo/rewired-logo - Copy.jpg" alt="ReWired" class="header-logo" />
+          <span><span style="color:#ffffff">Re</span><span style="color:#498179">Wired</span></span>
+        </a>
+        <nav class="nav-links">
+          <a href="/#features">How it works</a>
+          <a href="/#insights">Mindful insights</a>
+          <a href="/#rewards">Rewards</a>
+          <a href="/#subscribe">Subscribe</a>
+        </nav>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="legal-content">
+      <h1>Privacy Policy</h1>
+      <p class="meta">Last updated: 17 May 2026 &middot; Effective: 17 May 2026</p>
+
+      <div class="short">
+        The short version: We collect your name and email when you sign up. The ReWired app additionally collects screen time data, app usage, and approximate location to deliver its core features. We do not sell your data. You can request deletion at any time by emailing rewiredxapp@gmail.com.
+      </div>
+
+      <h2>1. Who we are</h2>
+      <p>ReWired ("we", "us", "our") is a digital wellbeing application. Our contact address for data protection matters is rewiredxapp@gmail.com.</p>
+      <p>We are the data controller for personal data collected through this website (rewiredxapp.vercel.app) and the ReWired mobile application.</p>
+
+      <h2>2. What data we collect and why</h2>
+      <p><strong>On this website (landing page / waitlist)</strong></p>
+      <table>
+        <thead>
+          <tr><th>Data</th><th>Why we collect it</th><th>Legal basis (GDPR)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Name</td><td>To personalise waitlist communications</td><td>Consent (Art. 6(1)(a))</td></tr>
+          <tr><td>Email address</td><td>To send early access updates and launch notifications</td><td>Consent (Art. 6(1)(a))</td></tr>
+        </tbody>
+      </table>
+      <p><strong>In the ReWired mobile app</strong></p>
+      <table>
+        <thead>
+          <tr><th>Data</th><th>Why we collect it</th><th>Legal basis (GDPR)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Name &amp; email</td><td>Account creation and authentication</td><td>Contract (Art. 6(1)(b))</td></tr>
+          <tr><td>Screen time data</td><td>To calculate hours reclaimed and generate your weekly stat card</td><td>Contract (Art. 6(1)(b))</td></tr>
+          <tr><td>App usage data</td><td>To identify scroll-break moments and award activity XP</td><td>Contract (Art. 6(1)(b))</td></tr>
+          <tr><td>Approximate location</td><td>To personalise local reward offers in The Vault</td><td>Consent (Art. 6(1)(a))</td></tr>
+          <tr><td>Activity logs</td><td>To track streaks, award Vault Points, and generate your stat card</td><td>Contract (Art. 6(1)(b))</td></tr>
+        </tbody>
+      </table>
+      <p>We do not collect sensitive personal data (health data, financial data, or data revealing racial or ethnic origin, political opinions, religious beliefs, or similar categories under GDPR Art. 9).</p>
+
+      <h2>3. How we store your data</h2>
+      <p>Your data is stored using Google Firebase (Firestore and Firebase Authentication), operated by Google LLC. Firebase infrastructure used by ReWired is located within the European Economic Area (EEA). For more information on Google's data processing, see firebase.google.com/support/privacy.</p>
+      <p>Waitlist form submissions are processed by Tally.so. Tally acts as a data processor on our behalf. For their privacy practices, see tally.so/privacy.</p>
+      <p>We retain your data for as long as your account is active. If you request deletion, we will remove your personal data within 30 days.</p>
+
+      <h2>4. Who we share data with</h2>
+      <p>We do not sell, rent, or trade your personal data. We share data only with the following service providers, who process it on our behalf under data processing agreements:</p>
+      <ul>
+        <li>Google Firebase — database, authentication, and backend infrastructure</li>
+        <li>Tally.so — waitlist and partner sign-up form processing</li>
+      </ul>
+      <p>We may disclose data if required to do so by law or in response to a valid legal request from a competent authority.</p>
+
+      <h2>5. Your rights under GDPR</h2>
+      <p>As a data subject under EU law, you have the following rights:</p>
+      <ul>
+        <li><strong>Right of access</strong> — request a copy of the personal data we hold about you</li>
+        <li><strong>Right to rectification</strong> — ask us to correct inaccurate or incomplete data</li>
+        <li><strong>Right to erasure</strong> ("right to be forgotten") — request deletion of your personal data</li>
+        <li><strong>Right to restriction</strong> — ask us to pause processing of your data</li>
+        <li><strong>Right to data portability</strong> — receive your data in a structured, machine-readable format</li>
+        <li><strong>Right to object</strong> — object to processing based on legitimate interests</li>
+        <li><strong>Right to withdraw consent</strong> — where processing is based on consent, you may withdraw it at any time without affecting the lawfulness of prior processing</li>
+      </ul>
+      <p>To exercise any of these rights, email us at rewiredxapp@gmail.com. We will respond within 30 days. You also have the right to lodge a complaint with your national data protection authority.</p>
+
+      <h2>6. Cookies and tracking</h2>
+      <p>This website does not currently use tracking cookies or analytics scripts. The Tally.so embedded forms may set functional cookies necessary for form operation. We do not use advertising or behavioural tracking cookies.</p>
+      <p>The ReWired app does not use cookies. App analytics, if introduced in future, will be disclosed in an updated version of this policy.</p>
+
+      <h2>7. Children's privacy</h2>
+      <p>ReWired is not directed at children under the age of 13. We do not knowingly collect personal data from children under 13. If you believe a child has provided us with personal data, please contact us at rewiredxapp@gmail.com and we will delete it promptly.</p>
+
+      <h2>8. Changes to this policy</h2>
+      <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. For significant changes, we will notify users by email where we hold an email address. Continued use of ReWired after changes take effect constitutes acceptance of the updated policy.</p>
+
+      <h2>9. Contact</h2>
+      <p>For any privacy-related questions or to exercise your rights, contact us at:<br /><a href="mailto:rewiredxapp@gmail.com" style="color:var(--primary)">rewiredxapp@gmail.com</a></p>
+    </main>
+
+    <footer class="footer">
+      <nav aria-label="Footer links" class="footer-links">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="mailto:rewiredxapp@gmail.com">Contact</a>
+      </nav>
+      <p>ReWired &copy; 2026 — the screen time app that rewards you for living. Break the scroll. Earn real rewards. Reclaim your day.</p>
+      <p><small>Questions? <a href="mailto:rewiredxapp@gmail.com">rewiredxapp@gmail.com</a></small></p>
+    </footer>
+  </body>
+</html>

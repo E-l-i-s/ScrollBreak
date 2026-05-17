@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Block Vercel system paths
+Disallow: /_vercel/
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://rewiredxapp.vercel.app/sitemap.xml
+
+# Crawl-delay for polite bots (optional, Googlebot ignores this but others respect it)
+# Crawl-delay: 1

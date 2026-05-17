@@ -1,0 +1,145 @@
+<!--
+  ============================================================
+  REWIRED — IMAGE OPTIMISATION GUIDE
+  ============================================================
+
+  Your three app screenshots and logo are the most likely cause
+  of a poor Largest Contentful Paint (LCP) score on mobile.
+  Run the steps below locally before your next deploy.
+
+  PREREQUISITE: Install Sharp CLI (Node.js)
+    npm install -g sharp-cli
+
+  OR use Squoosh CLI (no install needed in some environments):
+    npx @squoosh/cli --help
+
+
+  ── STEP 1: Convert PNG screenshots to WebP ────────────────
+
+  Run from your project root:
+
+    npx @squoosh/cli \
+      --webp '{"quality":82}' \
+      -d public/ \
+      public/stitch_scrollbreak_mindful_momentum_rewarder/onboarding_login/screen.png \
+      public/stitch_scrollbreak_mindful_momentum_rewarder/dashboard/screen.png \
+      public/stitch_scrollbreak_mindful_momentum_rewarder/rewards_marketplace/screen.png
+
+  Target: each WebP file should be under 120KB.
+  If still above that, drop quality to 75.
+
+
+  ── STEP 2: Update HTML img tags ───────────────────────────
+
+  Replace the three <img> tags in your HTML with <picture>
+  elements that serve WebP to modern browsers and PNG as fallback.
+  Also add explicit width/height to eliminate Cumulative Layout Shift (CLS).
+
+  IMPORTANT: Replace WIDTH_PX and HEIGHT_PX with the actual pixel
+  dimensions of each screenshot before deploying.
+
+-->
+
+<!-- ONBOARDING SCREEN -->
+<picture>
+  <source
+    srcset="/stitch_scrollbreak_mindful_momentum_rewarder/onboarding_login/screen.webp"
+    type="image/webp" />
+  <img
+    src="/stitch_scrollbreak_mindful_momentum_rewarder/onboarding_login/screen.png"
+    alt="ReWired onboarding screen — log your first activity and start earning Vault Points"
+    width="WIDTH_PX"
+    height="HEIGHT_PX"
+    loading="eager"
+    fetchpriority="high"
+  />
+</picture>
+<!--
+  NOTE: The onboarding screen is likely your LCP element (first image in the viewport).
+  Use loading="eager" and fetchpriority="high" on this one only.
+  All below-fold images use loading="lazy".
+-->
+
+<!-- DASHBOARD SCREEN -->
+<picture>
+  <source
+    srcset="/stitch_scrollbreak_mindful_momentum_rewarder/dashboard/screen.webp"
+    type="image/webp" />
+  <img
+    src="/stitch_scrollbreak_mindful_momentum_rewarder/dashboard/screen.png"
+    alt="ReWired dashboard — track daily streaks, reclaimed hours, and XP progress"
+    width="WIDTH_PX"
+    height="HEIGHT_PX"
+    loading="lazy"
+    decoding="async"
+  />
+</picture>
+
+<!-- REWARDS MARKETPLACE SCREEN -->
+<picture>
+  <source
+    srcset="/stitch_scrollbreak_mindful_momentum_rewarder/rewards_marketplace/screen.webp"
+    type="image/webp" />
+  <img
+    src="/stitch_scrollbreak_mindful_momentum_rewarder/rewards_marketplace/screen.png"
+    alt="ReWired Vault rewards marketplace — redeem points for food, music, and gaming rewards"
+    width="WIDTH_PX"
+    height="HEIGHT_PX"
+    loading="lazy"
+    decoding="async"
+  />
+</picture>
+
+<!--
+  ── STEP 3: Animated SVG Logo ──────────────────────────────
+
+  The animated SVG logo loads in <head> via a preload tag (included
+  in seo-head.html). No changes needed to the logo itself.
+
+  However, if the animation runs on every page load and is heavy,
+  consider:
+  1. Adding a `prefers-reduced-motion` CSS check:
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo-animated * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+  2. Lazy-loading the animated version and showing a static
+     fallback for the first paint:
+
+    <img
+      src="/logo/rewired-logo-static.png"
+      alt="ReWired"
+      width="120"
+      height="40"
+      id="logo-img"
+    />
+    <script>
+      // Swap to animated version after page load
+      window.addEventListener('load', function() {
+        document.getElementById('logo-img').src = '/logo/animatedlogo.svg';
+      });
+    </script>
+
+
+  ── STEP 4: Verify with PageSpeed Insights ─────────────────
+
+  After deploying:
+  1. Go to https://pagespeed.web.dev
+  2. Enter https://rewiredxapp.vercel.app/
+  3. Run MOBILE test (harder, more representative of your users)
+  4. Target scores:
+     • LCP < 2.5s  (green)
+     • CLS < 0.1   (green)
+     • FID/INP < 200ms (green)
+
+  Common remaining issues after image optimisation:
+  • Render-blocking resources: defer non-critical JS with defer attribute
+  • Unused JS: check the "Opportunities" section in PageSpeed for bundle size
+  • Third-party impact: Tally.so iframes add ~300–500ms; this is acceptable
+    but be aware it affects your performance score
+
+-->

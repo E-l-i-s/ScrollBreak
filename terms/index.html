@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service — ReWired</title>
+    <meta name="description" content="ReWired Terms of Service. Rules and guidelines for using the ReWired application and website." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://rewiredxapp.vercel.app/terms" />
+    <link rel="icon" type="image/jpeg" href="/logo/rewired-logo.jpeg" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --background: #0c1514;
+        --surface: #182120;
+        --surface-low: #141d1c;
+        --surface-high: #232c2b;
+        --surface-highest: #2d3735;
+        --surface-bright: #323b3a;
+        --surface-lowest: #07100f;
+        --on-surface: #dbe5e2;
+        --on-surface-variant: #c1c8c5;
+        --outline-variant: #414846;
+        --outline: #8b9290;
+        --primary: #98d1c8;
+        --primary-container: #002c27;
+        --primary-fixed: #b4eee4;
+        --on-primary: #003732;
+        --inverse-primary: #2f6760;
+        --secondary: #ffd79b;
+        --secondary-container: #ffb211;
+        --secondary-fixed: #ffdeae;
+        --glow: rgba(152, 209, 200, 0.25);
+        --shadow: rgba(0, 0, 0, 0.45);
+        --radius-lg: 20px;
+        --radius-md: 16px;
+        --radius-pill: 999px;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        font-family: "Manrope", sans-serif;
+        background: var(--background);
+        color: var(--on-surface);
+        min-height: 100vh;
+        overflow-x: hidden;
+        line-height: 1.6;
+      }
+
+      a, a:visited { color: inherit; text-decoration: none; }
+
+      .site-header {
+        position: sticky; top: 0; z-index: 50;
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        background: rgba(12, 21, 20, 0.75);
+        border-bottom: 1px solid rgba(65, 72, 70, 0.3);
+      }
+
+      .nav {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 16px 32px; max-width: 1200px; margin: 0 auto;
+      }
+
+      .brand {
+        display: flex; align-items: center; gap: 10px;
+        font-weight: 800; font-size: 1.25rem; letter-spacing: -0.02em;
+      }
+
+      .header-logo { height: 32px; width: auto; border-radius: 4px; }
+
+      .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--on-surface-variant); font-weight: 500; }
+
+      .nav-links a,
+      .nav-links a:visited { position: relative; transition: color 0.3s ease; padding: 4px 0; color: var(--on-surface-variant); }
+
+      .nav-links a:hover { color: var(--primary); }
+
+      .mobile-menu-btn { display: none; background: none; border: none; color: var(--on-surface); cursor: pointer; padding: 4px; }
+
+      .legal-content {
+        max-width: 800px; margin: 0 auto; padding: 80px 32px;
+      }
+
+      .legal-content h1 {
+        font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+        letter-spacing: -0.02em; margin-bottom: 8px;
+      }
+
+      .legal-content .meta {
+        color: var(--outline); font-size: 14px; margin-bottom: 40px;
+        padding-bottom: 24px; border-bottom: 1px solid rgba(65, 72, 70, 0.3);
+      }
+
+      .legal-content .short {
+        background: var(--surface-low); border: 1px solid rgba(152, 209, 200, 0.2);
+        border-radius: var(--radius-md); padding: 20px 24px; margin-bottom: 40px;
+        color: var(--primary); font-weight: 500; line-height: 1.7;
+      }
+
+      .legal-content h2 {
+        font-size: 1.3rem; font-weight: 700; margin: 40px 0 16px;
+        color: var(--primary);
+      }
+
+      .legal-content p { color: var(--on-surface-variant); margin-bottom: 16px; line-height: 1.7; }
+
+      .legal-content ul { list-style: none; padding: 0; margin: 0 0 16px; }
+      .legal-content ul li {
+        color: var(--on-surface-variant); padding: 8px 0 8px 24px;
+        position: relative; line-height: 1.6;
+      }
+      .legal-content ul li::before {
+        content: "•"; color: var(--primary); position: absolute; left: 0;
+      }
+
+      .legal-content ol { margin: 0 0 16px; padding-left: 24px; }
+      .legal-content ol li {
+        color: var(--on-surface-variant); padding: 4px 0; line-height: 1.6;
+      }
+
+      .footer {
+        padding: 48px 32px; text-align: center; color: var(--outline);
+        font-size: 13px; border-top: 1px solid rgba(65, 72, 70, 0.3); margin-top: 48px;
+      }
+
+      .footer a, .footer a:visited { color: var(--on-surface-variant); transition: color 0.3s ease; }
+      .footer a:hover { color: var(--primary); }
+
+      .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 16px; }
+
+      @media (max-width: 768px) {
+        .nav-links { display: none; }
+        .mobile-menu-btn { display: block; }
+        .legal-content { padding: 48px 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header" id="header">
+      <nav class="nav">
+        <a href="/" class="brand">
+          <img src="/logo/rewired-logo - Copy.jpg" alt="ReWired" class="header-logo" />
+          <span><span style="color:#ffffff">Re</span><span style="color:#498179">Wired</span></span>
+        </a>
+        <nav class="nav-links">
+          <a href="/#features">How it works</a>
+          <a href="/#insights">Mindful insights</a>
+          <a href="/#rewards">Rewards</a>
+          <a href="/#subscribe">Subscribe</a>
+        </nav>
+        <button class="mobile-menu-btn" aria-label="Toggle menu">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </nav>
+    </header>
+
+    <main class="legal-content">
+      <h1>Terms of Service</h1>
+      <p class="meta">Last updated: 17 May 2026 &middot; Effective: 17 May 2026</p>
+
+      <div class="short">
+        The short version: Use ReWired for its intended purpose — building better phone habits. Don't abuse the rewards system or misuse other people's data. We can suspend accounts that violate these terms. Questions? Email rewiredxapp@gmail.com.
+      </div>
+
+      <h2>1. Acceptance of terms</h2>
+      <p>By accessing this website or using the ReWired application ("Service"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree, do not use the Service.</p>
+      <p>These Terms form a legally binding agreement between you and ReWired. If you are using the Service on behalf of an organisation, you represent that you have authority to bind that organisation to these Terms.</p>
+
+      <h2>2. Description of the Service</h2>
+      <p>ReWired is a digital wellbeing application that helps users reduce passive screen time by logging real-world activities, earning Vault Points, and redeeming those points for rewards. The Service includes this website, the ReWired mobile application, and any related features or content.</p>
+      <p>The Service is currently in early access / waitlist stage. Features, availability, and reward offerings may change at any time.</p>
+
+      <h2>3. Eligibility</h2>
+      <p>You must be at least 13 years of age to use ReWired. By using the Service, you represent that you meet this requirement. Users under 18 should have parental or guardian consent.</p>
+
+      <h2>4. Your account</h2>
+      <p>When you create an account, you agree to:</p>
+      <ul>
+        <li>Provide accurate, current, and complete information</li>
+        <li>Keep your login credentials confidential</li>
+        <li>Notify us immediately of any unauthorised access to your account at rewiredxapp@gmail.com</li>
+        <li>Accept responsibility for all activity that occurs under your account</li>
+      </ul>
+      <p>We reserve the right to suspend or terminate accounts that provide false information or violate these Terms.</p>
+
+      <h2>5. Vault Points and rewards</h2>
+      <p>Vault Points are earned by logging activities through the ReWired app. The following rules apply:</p>
+      <ul>
+        <li>Vault Points have no cash value and cannot be exchanged for cash</li>
+        <li>Points are non-transferable and linked to your individual account</li>
+        <li>Reward availability and point values may change at any time without notice</li>
+        <li>We reserve the right to adjust, expire, or void points if we reasonably suspect abuse of the rewards system</li>
+        <li>Artificially inflating points through automated means, false logging, or exploitation of bugs is prohibited and may result in account suspension</li>
+      </ul>
+      <p>ReWired makes reasonable efforts to fulfil rewards but is not liable for third-party reward fulfilment failures beyond our control.</p>
+
+      <h2>6. Acceptable use</h2>
+      <p>You agree not to use the Service to:</p>
+      <ul>
+        <li>Violate any applicable law or regulation</li>
+        <li>Circumvent, manipulate, or exploit the rewards or points system</li>
+        <li>Upload or transmit malicious code, viruses, or harmful content</li>
+        <li>Attempt to gain unauthorised access to any part of the Service or its infrastructure</li>
+        <li>Scrape, copy, or reproduce any part of the Service without written permission</li>
+        <li>Harass, impersonate, or harm other users</li>
+        <li>Use the Service for any commercial purpose without our prior written consent</li>
+      </ul>
+
+      <h2>7. Intellectual property</h2>
+      <p>All content, branding, design, code, and materials within the Service are owned by or licensed to ReWired and protected by applicable intellectual property laws. You may not copy, reproduce, distribute, or create derivative works from any part of the Service without our express written permission.</p>
+      <p>You retain ownership of any content you submit (such as activity logs). By submitting content, you grant ReWired a non-exclusive, royalty-free licence to use that content solely to operate and improve the Service.</p>
+
+      <h2>8. Privacy</h2>
+      <p>Your use of the Service is also governed by our Privacy Policy, which is incorporated into these Terms by reference. By using the Service, you consent to the data practices described in the Privacy Policy.</p>
+
+      <h2>9. Third-party services</h2>
+      <p>The Service integrates with third-party providers including Google Firebase (backend infrastructure) and Tally.so (form processing). Your use of those services is subject to their respective terms and privacy policies. ReWired is not responsible for the practices of third-party services.</p>
+      <p>Reward fulfilment may involve third-party partners. ReWired is not responsible for the quality, availability, or terms of third-party rewards once redeemed.</p>
+
+      <h2>10. Disclaimers</h2>
+      <p>The Service is provided "as is" and "as available" without warranties of any kind, express or implied. We do not warrant that the Service will be uninterrupted, error-free, or free of harmful components.</p>
+      <p>ReWired does not provide medical, psychological, or therapeutic advice. The Service is a productivity and habit tool only. If you are experiencing serious issues with technology addiction or mental health, please consult a qualified professional.</p>
+
+      <h2>11. Limitation of liability</h2>
+      <p>To the fullest extent permitted by applicable law, ReWired shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use of or inability to use the Service, even if we have been advised of the possibility of such damages.</p>
+      <p>Our total liability to you for any claims arising from these Terms or the Service shall not exceed the amount you paid to ReWired in the 12 months preceding the claim, or €50, whichever is greater.</p>
+      <p>Nothing in these Terms limits liability for death or personal injury caused by our negligence, fraud, or any other liability that cannot be excluded under EU law.</p>
+
+      <h2>12. Termination</h2>
+      <p>You may stop using the Service and request account deletion at any time by contacting rewiredxapp@gmail.com.</p>
+      <p>We may suspend or terminate your access to the Service at any time, with or without notice, if we reasonably believe you have violated these Terms or if we discontinue the Service. Upon termination, your right to use the Service ceases immediately. Sections covering intellectual property, disclaimers, limitation of liability, and governing law survive termination.</p>
+
+      <h2>13. Changes to these Terms</h2>
+      <p>We may update these Terms from time to time. We will notify registered users of material changes by email. Continued use of the Service after updated Terms take effect constitutes acceptance. If you do not agree with the updated Terms, you must stop using the Service.</p>
+
+      <h2>14. Governing law and disputes</h2>
+      <p>These Terms are governed by and construed in accordance with the laws of the European Union and the jurisdiction in which ReWired is established. Any disputes arising from these Terms or the Service shall be subject to the exclusive jurisdiction of the competent courts in that jurisdiction.</p>
+      <p>If you are a consumer in the EU, you may also have access to the European Commission's Online Dispute Resolution platform at ec.europa.eu/consumers/odr.</p>
+
+      <h2>15. Contact</h2>
+      <p>For any questions about these Terms, contact us at:<br /><a href="mailto:rewiredxapp@gmail.com" style="color:var(--primary)">rewiredxapp@gmail.com</a></p>
+    </main>
+
+    <footer class="footer">
+      <nav aria-label="Footer links" class="footer-links">
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/terms">Terms of Service</a>
+        <a href="mailto:rewiredxapp@gmail.com">Contact</a>
+      </nav>
+      <p>ReWired &copy; 2026 — the screen time app that rewards you for living. Break the scroll. Earn real rewards. Reclaim your day.</p>
+      <p><small>Questions? <a href="mailto:rewiredxapp@gmail.com">rewiredxapp@gmail.com</a></small></p>
+    </footer>
+  </body>
+</html>

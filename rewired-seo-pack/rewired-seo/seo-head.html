@@ -1,0 +1,208 @@
+<!--
+  ============================================================
+  REWIRED — COMPLETE SEO <head> BLOCK
+  Drop this entire <head> into your index.html replacing
+  whatever <head> you currently have.
+  Update the [PLACEHOLDERS] before deploying.
+  ============================================================
+-->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ─── PRIMARY SEO ─────────────────────────────────────── -->
+
+  <title>ReWired — Screen Time App That Rewards You for Living | Break the Scroll</title>
+
+  <meta name="description"
+    content="ReWired replaces mindless scrolling with real rewards. Log activities, earn Vault Points, and reclaim 2.5+ hours daily. The screen time app that actually fights back." />
+
+  <meta name="keywords"
+    content="screen time app, reduce screen time, stop doomscrolling, digital detox app rewards, phone addiction help, gamified focus app, mindful phone habits, digital wellbeing rewards, scroll break app" />
+
+  <link rel="canonical" href="https://rewiredxapp.vercel.app/" />
+
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="author" content="ReWired" />
+
+  <!-- ─── OPEN GRAPH (Facebook, LinkedIn, iMessage previews) ── -->
+
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="ReWired" />
+  <meta property="og:url"         content="https://rewiredxapp.vercel.app/" />
+  <meta property="og:title"       content="ReWired — Earn Real Rewards for Putting Down Your Phone" />
+  <meta property="og:description" content="The screen time app that actually fights back. Log activities instead of scrolling. Unlock food, music, gaming rewards from The Vault. Reclaim your day." />
+  <meta property="og:image"       content="https://rewiredxapp.vercel.app/og-image.png" />
+  <!--
+    og:image REQUIREMENTS:
+    • Size: 1200 × 630 px (exact)
+    • Format: PNG or JPG
+    • Content: App name, tagline, a screenshot or device mockup, brand colours
+    • File: create this and add it to /public/og-image.png in your repo
+    • Facebook/LinkedIn will cache it — use a cache-buster ?v=2 when updating
+  -->
+  <meta property="og:image:width"  content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt"    content="ReWired app — Break the infinite scroll and earn real rewards" />
+  <meta property="og:locale"       content="en_US" />
+
+  <!-- ─── TWITTER / X CARD ────────────────────────────────── -->
+
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:site"        content="@rewiredxapp" />
+  <!-- Update @rewiredxapp to your actual Twitter/X handle, or remove the line -->
+  <meta name="twitter:creator"     content="@rewiredxapp" />
+  <meta name="twitter:title"       content="ReWired — Earn Rewards for Putting Down Your Phone" />
+  <meta name="twitter:description" content="ReWired replaces doomscrolling with real life. Log reading, movement, creativity. Earn Vault Points. Redeem real rewards. Reclaim 2.5 hours daily." />
+  <meta name="twitter:image"       content="https://rewiredxapp.vercel.app/og-image.png" />
+  <meta name="twitter:image:alt"   content="ReWired app screenshots showing activity log, vault rewards, and weekly stat card" />
+
+  <!-- ─── APPLE / PWA META ─────────────────────────────────── -->
+
+  <meta name="application-name" content="ReWired" />
+  <meta name="apple-mobile-web-app-title" content="ReWired" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#0f0f0f" />
+  <!-- Update #0f0f0f to your actual brand primary colour -->
+
+  <!-- ─── FAVICON / ICONS ───────────────────────────────────
+    Recommended set — generate all sizes from your logo at
+    https://realfavicongenerator.net and place them in /public/
+  -->
+  <link rel="icon"             href="/favicon.ico" sizes="any" />
+  <link rel="icon"             href="/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest"         href="/site.webmanifest" />
+
+  <!-- ─── PERFORMANCE ─────────────────────────────────────── -->
+
+  <!-- Preconnect to external origins used on the page -->
+  <link rel="preconnect" href="https://tally.so" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />        <!-- if using Google Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Preload above-the-fold critical assets -->
+  <link rel="preload" href="/logo/animatedlogo.svg" as="image" type="image/svg+xml" />
+
+  <!-- ─── STRUCTURED DATA (JSON-LD) ─────────────────────────
+    Three schemas:
+    1. SoftwareApplication  — enables App rich results in SERP
+    2. Organization         — establishes brand entity
+    3. WebPage / FAQPage    — unlocks FAQ accordion in SERP
+       (add real FAQ content before enabling FAQ schema)
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ReWired",
+    "url": "https://rewiredxapp.vercel.app/",
+    "description": "ReWired replaces mindless scrolling with real rewards. Log activities, earn Vault Points, and redeem real-world rewards from The Vault. Screen time app for digital wellbeing.",
+    "applicationCategory": "LifestyleApplication",
+    "operatingSystem": "iOS, Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/ComingSoon"
+    },
+    "screenshot": [
+      "https://rewiredxapp.vercel.app/stitch_scrollbreak_mindful_momentum_rewarder/onboarding_login/screen.png",
+      "https://rewiredxapp.vercel.app/stitch_scrollbreak_mindful_momentum_rewarder/dashboard/screen.png",
+      "https://rewiredxapp.vercel.app/stitch_scrollbreak_mindful_momentum_rewarder/rewards_marketplace/screen.png"
+    ],
+    "featureList": [
+      "Activity logging in under 10 seconds",
+      "Earn Vault Points for real-world activities",
+      "Redeem rewards: food, music, gaming, experiences",
+      "Weekly personal stat card with hours reclaimed",
+      "Streak tracking and daily progress",
+      "Scroll-break intervention psychology"
+    ],
+    "keywords": "screen time, digital detox, doomscrolling, phone addiction, rewards, digital wellbeing",
+    "publisher": {
+      "@type": "Organization",
+      "name": "ReWired",
+      "url": "https://rewiredxapp.vercel.app/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://rewiredxapp.vercel.app/logo/rewired-logo - Copy.jpg"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "rewiredxapp@gmail.com",
+        "contactType": "customer support"
+      }
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "ReWired",
+    "url": "https://rewiredxapp.vercel.app/",
+    "logo": "https://rewiredxapp.vercel.app/logo/rewired-logo - Copy.jpg",
+    "description": "ReWired is a digital wellbeing app that replaces passive screen consumption with real-world activity rewards.",
+    "email": "rewiredxapp@gmail.com",
+    "sameAs": [
+      "https://twitter.com/rewiredxapp"
+      /* Add your other social profile URLs here:
+         "https://www.instagram.com/rewiredxapp",
+         "https://www.tiktok.com/@rewiredxapp",
+         "https://www.producthunt.com/products/rewired"
+      */
+    ]
+  }
+  </script>
+
+  <!--
+  FAQ SCHEMA — Uncomment and fill in once you add an FAQ section to the page.
+  This creates expandable Q&A accordion entries directly in Google search results.
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does ReWired help reduce screen time?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ReWired intercepts the urge to scroll and replaces it with a 10-second activity log. Every real-world action you take — reading, exercise, creativity — earns Vault Points redeemable for food, music, and gaming rewards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is ReWired free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "ReWired is free to download. Core activity logging and point earning are included at no cost."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What kind of rewards can I earn?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vault Points unlock real-world rewards across food, music, gaming, and experiences. The more you log, the more The Vault opens up."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does ReWired work on iPhone and Android?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, ReWired is available for both iOS and Android devices."
+        }
+      }
+    ]
+  }
+  </script>
+  -->
+
+  <!-- YOUR EXISTING CSS / STYLES GO BELOW THIS LINE -->
+</head>
