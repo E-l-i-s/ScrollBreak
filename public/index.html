@@ -237,7 +237,7 @@
         pointer-events: none;
       }
 
-      #loader img {
+      #loader svg {
         width: clamp(180px, 50vw, 320px);
         height: auto;
       }
@@ -1624,7 +1624,27 @@ window.TallyConfig = {
   <body>
     <!-- Loading Overlay -->
     <div id="loader">
-      <img src="logo/animatedlogo.svg" alt="ReWired" />
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%" style="max-width:320px;max-height:320px">
+        <defs>
+          <mask id="joint-cutout">
+            <rect width="100%" height="100%" fill="white" />
+            <circle class="r-cutout" cx="130" cy="255" r="11" />
+          </mask>
+          <style>
+            .r-path { fill:none; stroke:#98C9C0; stroke-width:28; stroke-linecap:round; stroke-linejoin:round; stroke-dasharray:1000; stroke-dashoffset:1000; animation:drawPath 1.4s cubic-bezier(0.4,0,0.2,1) forwards; }
+            .r-joint { fill:#98C9C0; opacity:0; transform:scale(0); transform-origin:130px 255px; animation:popElement 0.4s cubic-bezier(0.175,0.885,0.32,1.275) 0.8s forwards; }
+            .r-cutout { fill:#104E47; opacity:0; transform:scale(0); transform-origin:130px 255px; animation:popElement 0.4s cubic-bezier(0.175,0.885,0.32,1.275) 0.8s forwards; }
+            .r-dot { fill:#FFA800; opacity:0; transform:scale(0); transform-origin:290px 335px; animation:popElement 0.5s cubic-bezier(0.175,0.885,0.32,1.275) 1.25s forwards; }
+            @keyframes drawPath { 0%{stroke-dashoffset:1000} 100%{stroke-dashoffset:0} }
+            @keyframes popElement { 0%{opacity:0;transform:scale(0)} 100%{opacity:1;transform:scale(1)} }
+          </style>
+        </defs>
+        <g mask="url(#joint-cutout)">
+          <path class="r-path" d="M 130 320 L 130 80 C 130 80, 290 80, 290 167.5 C 290 255, 145 255, 130 255 L 290 335" />
+          <circle class="r-joint" cx="130" cy="255" r="23" />
+        </g>
+        <circle class="r-dot" cx="290" cy="335" r="28" />
+      </svg>
     </div>
     <!-- Ambient Background -->
     <div class="ambient">
